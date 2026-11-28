@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agnes Kung · Engineering Portfolio</title>
+<meta name="description" content="Engineering portfolio of Agnes Kung, Biomedical and Mechanical Engineering at McMaster University: exoskeletons, bioreactor CFD, medical devices and machining.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agneskung.github.io/portfolio/">
+<meta property="og:title" content="Agnes Kung · Engineering Portfolio">
+<meta property="og:description" content="Biomedical and Mechanical Engineering at McMaster University: exoskeletons, bioreactor CFD, medical devices and machining.">
+<meta property="og:image" content="https://agneskung.github.io/portfolio/img/og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* VOICE: clean, calm engineering portfolio; white paper, grey structure, one blue
+   IDEA: a project binder: each card opens into its drawings, data and decisions
+   PICTURE: the work itself, only inside its project: galleries, live CFD flow, FEA probe
+   COLOUR and TYPE: white #fff, grey #f5f6f8 / #e3e6eb, ink #1c1e23, blue #2457d6; Arial throughout
+   LAYOUT: intro, worked-with, about, projects, school activities, experience, education, skills, contact */
+:root{color-scheme:light;--bg:#fff;--soft:#f5f6f8;--soft2:#eef0f3;--line:#e3e6eb;--ink:#1c1e23;--muted:#646a76;--faint:#9097a3;--blue:#2457d6;--blue2:#1b45ad;--bluet:#e9effc}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Arial,"Helvetica Neue",Helvetica,sans-serif;overflow-x:clip}
+h1,h2,h3,h4{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;line-height:1.12;text-wrap:balance;margin:0 0 .45em;color:var(--ink)}
+h1{font-size:clamp(38px,5.6vw,64px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:20px;font-weight:700}h4{font-size:17px;font-weight:700}
+p{margin:0 0 1em;max-width:68ch}a{color:var(--blue)}img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(4vw,16px)}
+section{padding:clamp(52px,7vw,92px) 0;border-top:1px solid var(--line)}
+.eyebrow{font-size:14px;color:var(--blue);font-weight:700;margin-bottom:10px}
+.muted{color:var(--muted)}.cap{font-size:14px;color:var(--muted);margin-top:10px}.cap b{color:var(--ink)}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* nav */
+nav.top{position:sticky;top:0;z-index:40;background:#fffffff0;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:22px;height:62px}
+.brand{font-weight:700;font-size:17px;color:var(--ink);text-decoration:none;margin-right:auto}
+nav.top a.l{color:var(--muted);text-decoration:none;font-size:14px;padding:6px 0}
+nav.top a.l:hover,nav.top a.l.on{color:var(--ink);box-shadow:inset 0 -2px var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:1px solid var(--blue);border-radius:999px;padding:10px 20px;font-weight:700;font-size:14px;text-decoration:none;min-height:44px}
+.btn:hover{background:var(--blue2)}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}.btn.ghost:hover{border-color:var(--blue);color:var(--blue)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--blue);width:0}
+/* hero */
+.hero{padding:clamp(56px,8vw,104px) 0 clamp(40px,5vw,64px)}
+.status{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;margin-bottom:26px;background:var(--soft)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px #2457d600}0%{box-shadow:0 0 0 0 #2457d677}}
+.hey{font-size:18px;color:var(--muted);margin:0 0 6px}
+.herogrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end}
+.herogrid p{font-size:17px;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.worked{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--soft);padding:26px 0}
+.worked .lbl{font-size:13px;color:var(--faint);margin-bottom:10px}
+.logos{display:flex;flex-wrap:wrap;gap:10px 34px;font-weight:700;color:var(--muted);font-size:16px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:40px}
+.about p{font-size:17px;color:var(--muted)}
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:-10px 0 24px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);min-height:40px}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pcard{border:1px solid var(--line);border-radius:14px;background:#fff;transition:border-color .2s,box-shadow .2s,transform .2s;overflow:hidden}
+.pcard:not(.open):hover{border-color:#c5cee0;box-shadow:0 10px 26px -18px #1c1e2366;transform:translateY(-2px)}
+.pcard.open{grid-column:1/-1;border-color:#c5cee0}
+.pcard.hide{display:none}
+.phead{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;width:100%;padding:22px 24px;cursor:pointer;align-items:start}
+.phead:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.phead .thumb{width:96px;height:72px;border-radius:8px;object-fit:cover;background:var(--soft);border:1px solid var(--line)}
+.phead h3{margin:0 0 4px}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--faint);margin-bottom:8px}
+.wip{background:var(--blue);color:#fff;font-weight:700;font-size:11px;border-radius:999px;padding:3px 9px}
+.short{color:var(--muted);font-size:15px;margin:0}
+.more{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--blue)}
+.pcard.open .more{display:none}
+.pbody{display:none;padding:0 24px 26px}
+.pcard.open .pbody{display:block}
+.pbody ul{color:var(--muted);font-size:15px;padding-left:20px;margin:0 0 16px}.pbody li{margin-bottom:7px}
+.close{display:block;margin:0 0 12px auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:13px;color:var(--muted)}
+.plink{font-size:14px;font-weight:700;text-decoration:none;display:inline-block;margin:0 16px 16px 0}
+/* gallery */
+.gal{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:12px;margin:8px 0 4px}
+.gmain{position:relative;background:var(--soft);border:1px solid var(--line);border-radius:12px;overflow:hidden;aspect-ratio:16/11;cursor:zoom-in}
+.gmain img{width:100%;height:100%;object-fit:contain}
+.gnav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fffffff0;font-size:17px}
+.gnav.p{left:10px}.gnav.n{right:10px}
+.gth{contain:size;display:flex;flex-direction:column;gap:8px}
+.gth button{flex:1 1 0;min-height:0;border:2px solid transparent;border-radius:9px;padding:0;overflow:hidden;background:var(--soft);opacity:.6}
+.gth button.on{border-color:var(--blue);opacity:1}
+.gth img{width:100%;height:100%;object-fit:cover}
+.gcap{font-size:14px;color:var(--muted);margin:10px 0 0;max-width:80ch}.gcap b{color:var(--ink)}
+.gal.single{grid-template-columns:minmax(0,1fr)}.gal.single .gmain{max-width:560px;aspect-ratio:auto}.gal.single .gth{display:none}
+#lb{position:fixed;inset:0;background:#0d0f14e8;z-index:90;display:none;place-items:center;padding:24px}
+#lb.show{display:grid}#lb img{max-width:100%;max-height:78vh;border-radius:10px;background:#fff}
+#lb p{color:#d9dde5;text-align:center;font-size:14px;max-width:70ch;margin:14px auto 0}
+#lb button{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:30px}
+/* modules shared */
+.sub{margin:34px 0 12px;padding-top:26px;border-top:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:start}
+.panel{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:20px}
+.seg{display:inline-flex;background:var(--soft2);border-radius:999px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;border-radius:999px;padding:8px 15px;min-height:40px;font-weight:700;font-size:14px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px #0002}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.viewer{position:relative;overflow:hidden;background:var(--soft);border:1px solid var(--line);border-radius:12px;margin-top:12px}
+.viewer img{width:100%}
+.probe{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:13px;padding:6px 10px;border-radius:6px;transform:translate(12px,-120%);white-space:nowrap;display:none}
+.probe:before{content:"";position:absolute;left:-14px;top:100%;width:10px;height:10px;border-radius:50%;border:2px solid #fff;background:var(--blue);transform:translate(-2px,-2px)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat b{font-size:clamp(20px,2.3vw,26px);display:block}.stat small{display:block;color:var(--muted);font-size:13px}
+.steps{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:12px}
+.steps i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:13px;border:2px solid var(--line);color:var(--muted)}
+.steps li.done i{background:var(--ink);border-color:var(--ink);color:#fff}
+.steps li.now i{border-color:var(--blue);color:var(--blue);animation:pulse 2s infinite}
+.steps b{display:block;font-size:15px}.steps span{color:var(--muted);font-size:14px}
+.hot{position:absolute;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;border:2px solid #fff;background:#2457d6dd;color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center;animation:ring 2.4s infinite}
+.hot.on{background:var(--ink);animation:none;transform:scale(1.15)}
+@keyframes ring{0%{box-shadow:0 0 0 0 #2457d688}70%{box-shadow:0 0 0 12px #2457d600}}
+.plist{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0}
+.plist button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;min-height:38px;font-size:14px;color:var(--muted)}
+.plist button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.imps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.imp{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 16px 16px;cursor:grab}
+.imp canvas{width:100%;height:170px;display:block;touch-action:pan-y}
+.imp dt{font-size:13px;color:var(--faint);margin-top:6px}.imp dd{margin:0;font-size:15px}
+.imp h4{display:flex;align-items:center;gap:8px;margin:4px 0 2px}
+.method{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.mtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.mtabs button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 13px;min-height:42px;font-weight:700;font-size:14px;color:var(--muted)}
+.mtabs button.on{border-color:var(--blue);color:var(--blue);background:var(--bluet)}
+.mfig{width:100%;height:auto}.mfig text{font:13px Arial,sans-serif;fill:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-size:13px}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.scroll{overflow-x:auto}
+.flowwrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.fig{position:relative;aspect-ratio:100/44;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.fig canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin-top:10px;align-items:center}
+.ramp{display:inline-block;width:64px;height:10px;border-radius:2px;background:linear-gradient(90deg,#f4f7fd,#1d4fd1);vertical-align:middle;margin-right:6px}
+.ctrl{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;margin:12px 0 8px;align-items:center}
+.pill{border:1px solid var(--ink);background:#fff;border-radius:999px;padding:6px 14px;min-height:36px;font-size:13px;font-weight:700}
+.pill.on{background:var(--ink);color:#fff}
+.speed{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.speed input{accent-color:var(--blue);width:110px}
+.bars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.bars h5{margin:0 0 8px;font-size:13px;color:var(--muted)}
+.bar{display:grid;grid-template-columns:72px 1fr;gap:8px;align-items:center;font-size:13px;margin:6px 0;cursor:pointer;border:0;background:none;padding:2px 0;width:100%;text-align:left}
+.bar span.t{min-width:64px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-weight:700;transition:width .6s,opacity .3s;white-space:nowrap}
+.bar.dim span.t{opacity:.4}
+.verdict{border-left:3px solid var(--blue);padding:4px 0 4px 16px;margin-top:20px}
+/* activities, experience */
+.acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.act{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff}
+.act .org{font-size:13px;color:var(--faint);margin:2px 0 10px}
+.act ul{color:var(--muted);font-size:14.5px;padding-left:18px;margin:0}.act li{margin-bottom:6px}
+.act a{font-size:14px;font-weight:700;text-decoration:none;display:inline-block;margin-top:10px}
+.job{border-bottom:1px solid var(--line)}.job:first-child{border-top:1px solid var(--line)}
+.jh{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;gap:16px;width:100%;padding:20px 0;cursor:pointer;align-items:flex-start}
+.jh:focus-visible{outline:2px solid var(--blue)}
+.jh b{font-size:18px;display:block}.jh .org{font-size:14px;color:var(--muted);margin-top:4px}
+.jr{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--faint);white-space:nowrap}
+.nowtag{background:var(--blue);color:#fff;font-weight:700;font-size:11px;border-radius:999px;padding:3px 9px}
+.chev{color:var(--blue);transition:transform .2s}.job.open .chev{transform:rotate(180deg)}
+.jb{display:none;padding:0 0 18px}.job.open .jb{display:block}
+.jb ul{color:var(--muted);font-size:15px;padding-left:20px;margin:0}.jb li{margin-bottom:8px}
+.edu{border:1px solid var(--line);border-radius:14px;padding:26px 28px;background:var(--soft);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:end}
+.edu .s{font-size:22px;font-weight:700}.edu .g{font-size:34px;font-weight:700;color:var(--blue);line-height:1}
+.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.skills h4{font-size:14px;color:var(--blue);margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:#fff}
+button.tag{min-height:36px}button.tag:after{content:" ↗";color:var(--blue)}
+button.tag:hover,button.tag.on{background:var(--blue);color:#fff;border-color:var(--blue)}button.tag:hover:after,button.tag.on:after{color:#fff}
+.contact{background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:clamp(36px,6vw,64px) 28px;text-align:center}
+.contact p{margin:0 auto 26px;color:var(--muted)}
+.fine{font-size:13px;color:var(--faint);text-align:center;margin:36px 0 0}
+.jump{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:18px;font-size:13px;color:var(--faint)}
+.jump button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;color:var(--muted);min-height:36px}
+.jump button:hover{border-color:var(--blue);color:var(--blue)}
+.tl{border:1px solid var(--line);border-radius:14px;padding:18px 20px 14px;margin:0 0 26px;background:var(--soft)}
+.tlhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.tlrow{display:grid;grid-template-columns:190px minmax(0,1fr);gap:12px;align-items:center;min-height:30px}
+.tlrow .nm{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{position:relative;height:22px}
+.tbar{position:absolute;top:3px;height:16px;border-radius:5px;border:0;padding:0;cursor:pointer;transition:transform .15s,filter .15s}
+.tbar.work{background:var(--blue)}.tbar.club{background:#9aa3b2}.tbar.edu{background:#1c1e23}
+.tbar:hover,.tbar:focus-visible{transform:scaleY(1.35);filter:brightness(1.1)}
+.tbar.live:after{content:"";position:absolute;right:-4px;top:4px;width:8px;height:8px;border-radius:50%;background:inherit;animation:pulse 2s infinite}
+.axis{position:relative;height:20px;margin-left:202px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+.axis span{position:absolute;top:3px;transform:translateX(-50%)}
+.nowline{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--blue)}
+.tip{position:fixed;z-index:60;pointer-events:none;background:var(--ink);color:#fff;font-size:13px;padding:8px 11px;border-radius:8px;max-width:260px;display:none;line-height:1.4}
+.tip small{color:#b8bfcc;display:block}
+.tlkey{display:flex;gap:14px;font-size:12px;color:var(--muted)}.tlkey i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.flash{animation:flash 1.6s}@keyframes flash{0%,40%{box-shadow:0 0 0 3px var(--blue)}100%{box-shadow:0 0 0 0 transparent}}
+.exl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.exl svg{width:100%;height:auto;max-height:420px;background:var(--soft);border:1px solid var(--line);border-radius:12px;touch-action:none}
+.seg2{cursor:pointer}.seg2:hover line.s{stroke:#6d8fe6}
+.ctl{display:grid;gap:12px;margin:14px 0}
+.ctl label{display:grid;grid-template-columns:120px minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+.ctl input{accent-color:var(--blue);width:100%}
+.ctl output{font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.partbtns{display:flex;flex-wrap:wrap;gap:6px}
+.partbtns button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted);min-height:36px}
+.partbtns button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.fprobe{position:absolute;pointer-events:none;background:#1c1e23e6;color:#fff;font-size:12px;padding:5px 8px;border-radius:6px;transform:translate(10px,-110%);white-space:nowrap;display:none}
+.steps li.click{cursor:pointer;border-radius:8px;margin:-4px;padding:4px}.steps li.click:hover{background:var(--soft)}
+.steps li.sel b{color:var(--blue)}
+.phasebox{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}.phasebox b{font-size:22px}
+.stg{background:var(--ink);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px}.stg.sw2{background:#9aa3b2}
+.loadlist{display:grid;gap:6px}
+.loadlist button{display:grid;grid-template-columns:12px minmax(0,1fr) 110px;gap:10px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;text-align:left;font-size:14px;color:var(--muted);min-height:42px}
+.loadlist button.on{border-color:var(--ink);color:var(--ink);font-weight:700}
+.loadlist .sw{width:12px;height:12px;border-radius:3px}.loadlist .mt{height:8px;border-radius:4px;background:var(--soft2);overflow:hidden}.loadlist .mt b{display:block;height:100%;border-radius:4px}
+.ramp2{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.ramp2 i{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#2457d6,#22b8cf,#43c463,#f5c33b,#e5484d)}
+.chartbox{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff}.chartbox svg{width:100%;height:auto;display:block;touch-action:none}.chartbox text{font-family:Arial,sans-serif}
+.award{display:flex;gap:14px;align-items:center;background:linear-gradient(90deg,#fff6e0,#fff);border:1px solid #f0d48a;border-radius:12px;padding:14px 18px;margin:0 0 16px}
+.award .medal{flex:none;width:44px;height:44px;border-radius:50%;background:#e9b949;color:#fff;font-weight:700;display:grid;place-items:center;font-size:20px;box-shadow:inset 0 -3px #c99522}
+.award b{display:block;font-size:17px;color:var(--ink)}.award span{font-size:14px;color:var(--muted)}
+.awd{background:#e9b949;color:#1c1e23;font-weight:700;font-size:11px;border-radius:999px;padding:3px 9px}
+.fz{margin:0}.fz img{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in}
+.bmk{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}.bmk button,.thumbsel button,.apptabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;color:var(--muted);min-height:36px}
+.bmk button.on,.thumbsel button.on,.apptabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.thumbsel{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.runbar{display:flex;gap:4px}.runbar button{position:relative;border:1px solid var(--line);background:var(--soft);border-radius:8px;min-height:46px;padding:0;overflow:hidden;text-align:left}
+.runbar button i{position:absolute;inset:0 auto 0 0;width:0;background:#cfdcfa}.runbar button.on{border-color:var(--blue)}
+.runbar span{position:relative;font-size:12px;font-weight:700;padding:0 8px;color:var(--ink);white-space:nowrap}
+.clock{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.dpane{display:none}.dpane.on{display:block}
+.fit{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}.fitbar{position:relative;height:22px;margin:4px 0;font-size:12px;color:var(--muted)}
+.fitbar span{position:absolute;left:0;top:3px}.fitbar i{position:absolute;top:4px;height:14px;border-radius:3px;background:#2457d6}.fitbar:last-of-type i{background:#e08a1e}
+.fitbar:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed #9aa3b2}
+.hinge{width:100%;max-width:360px;height:auto;display:block;margin:8px 0}
+.calc h4{margin-bottom:8px}.eq{font-family:"Times New Roman",serif;font-size:17px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:10px;overflow-x:auto;white-space:nowrap}
+.inputs{display:grid;gap:6px}.inputs label{display:grid;grid-template-columns:minmax(0,1fr) 96px 52px;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.inputs input{font:inherit;font-size:16px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:100%}.inputs small{font-size:12px}
+.result{display:flex;gap:8px;align-items:baseline;margin-top:10px;flex-wrap:wrap}.result b{font-size:28px;color:var(--blue)}
+.lwc{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:8px;margin-top:8px}
+.appgrid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+.phone{border:9px solid #1c1e23;border-radius:34px;overflow:hidden;aspect-ratio:9/18;background:#fff;box-shadow:0 18px 40px -24px #1c1e2399}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;cursor:zoom-in}
+.apptabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.pipe{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px;counter-reset:p}
+.pipe li[data-i]{counter-increment:p;border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 46px;position:relative;cursor:pointer;background:#fff}
+.pipe li[data-i]:before{content:counter(p);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted)}
+.pipe li.on{border-color:var(--blue)}.pipe li.on:before{border-color:var(--blue);color:var(--blue)}.pipe li.done:before{background:var(--ink);border-color:var(--ink);color:#fff}
+.pipe b{display:block;font-size:15px}.pipe span{font-size:14px;color:var(--muted);display:none}.pipe li.on span{display:block}
+.calsvg{width:100%;height:auto;display:block}
+details.more2{border-top:1px solid var(--line);padding:12px 0}details.more2 summary{cursor:pointer;font-weight:700;font-size:16px}details.more2[open] summary{margin-bottom:10px}
+.refs{font-size:13px;color:var(--muted);padding-left:20px}.refs li{margin-bottom:6px}
+@media (max-width:640px){.appgrid{grid-template-columns:minmax(0,1fr)}.phone{max-width:240px;margin:0 auto}.loadlist button{grid-template-columns:12px minmax(0,1fr) 70px}.inputs label{grid-template-columns:minmax(0,1fr) 84px 44px}}
+.walk{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start}
+.wstage{position:relative}#wSvg text{pointer-events:none}.wstage svg{width:100%;height:auto;display:block;background:#f5f6f8;border:1px solid var(--line);border-radius:12px;touch-action:none;user-select:none}
+.wring{animation:wr 1.4s ease-in-out infinite}@keyframes wr{50%{opacity:.25}}
+.wtools{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:10px}.wtools .pill[disabled]{opacity:.35;cursor:not-allowed}
+.wflash{position:absolute;inset:0;border-radius:12px;background:#fff;opacity:0;pointer-events:none}.wflash.go{animation:fl .5s}@keyframes fl{0%{opacity:.95}100%{opacity:0}}
+.wres{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px;margin-top:8px;align-items:center}.wres i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}.wres a{font-weight:700;text-decoration:none}
+.wsteps{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.wsteps li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:center;font-size:14px;color:var(--faint)}
+.wsteps i{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700}
+.wsteps li.done{color:var(--muted)}.wsteps li.done i{background:var(--ink);border-color:var(--ink);color:#fff}
+.wsteps li.now{color:var(--ink);font-weight:700}.wsteps li.now i{border-color:var(--blue);color:var(--blue)}.wsteps small{font-weight:400;color:var(--faint)}
+.defx{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.defc{position:relative;aspect-ratio:300/310;max-height:440px;background:#fff;border:1px solid var(--line);border-radius:12px}.defc canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.ramp2 i.fea{background:linear-gradient(90deg,#0000ff,#00a0ff,#00e678,#96f000,#ffe600,#ff7800,#dc1e14)}
+@media (max-width:900px){.walk,.defx{grid-template-columns:minmax(0,1fr)}}
+.pshow{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:12px}
+.pstage{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 50% 38%,#ffffff 0%,#f4f5f7 55%,#e6e9ee 100%);border:1px solid var(--line);display:grid;place-items:center;outline:none}
+.pstage.photo img{position:absolute;inset:0;max-width:none;max-height:none;width:100%;height:100%;object-fit:contain;margin:0;filter:drop-shadow(0 10px 24px #0006)}.pstage.photo:before{content:'';position:absolute;inset:-30px;background:var(--ph) center/cover;filter:blur(22px) brightness(.8);z-index:0}.pstage.photo .psfloor{display:none}.pstage.photo .pscode,.pstage.photo .psname b,.pstage.photo .psname span{color:#fff;text-shadow:0 1px 6px #000a}
+.pstage.photo:after{content:'';position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,#0009);z-index:1}
+.pstage:focus-visible{box-shadow:0 0 0 3px var(--blue)}
+.pstage img{max-width:78%;max-height:64%;margin-bottom:6%;object-fit:contain;filter:drop-shadow(0 22px 18px #1c1e232e);position:relative;z-index:1}
+.pstage img.in{animation:psin .55s cubic-bezier(.2,.7,.2,1)}@keyframes psin{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.psfloor{position:absolute;left:18%;right:18%;bottom:12%;height:18px;border-radius:50%;background:radial-gradient(#1c1e2322,transparent 70%)}
+.pscode{position:absolute;left:18px;top:14px;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);z-index:2}
+.psname{position:absolute;left:18px;bottom:14px;z-index:2}.psname b{display:block;font-size:20px}.psname span{font-size:13px;color:var(--muted)}
+.pstage .gnav{z-index:3}
+.pslens{position:absolute;width:160px;height:160px;border-radius:50%;margin:-80px 0 0 -80px;border:3px solid #fff;box-shadow:0 10px 30px -8px #1c1e2366;background-repeat:no-repeat;background-color:#f4f5f7;display:none;pointer-events:none;z-index:4}
+.psheet{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:#fff}
+.pschain{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:12px}
+.pschain span{padding:5px 9px;border-radius:6px;background:var(--soft2);color:var(--faint);white-space:nowrap}.pschain span.hip{background:#fff;border:1px dashed #c9ced8}
+.pschain span.on{background:var(--blue);color:#fff;font-weight:700}.pschain i{width:10px;height:2px;background:#c9ced8}
+.psfeat{margin:0 0 14px;padding-left:20px;color:var(--muted);font-size:15px}.psfeat li{margin-bottom:6px}.psfeat li::marker{color:var(--blue);font-weight:700}
+.psspec{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0;padding-top:12px;border-top:1px solid var(--line);font-size:14px}.psspec dt{color:var(--faint)}.psspec dd{margin:0;font-weight:700}
+.psline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:14px}
+.psline button{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 10px 8px;display:grid;gap:8px;text-align:left;transition:border-color .2s,transform .2s}
+.psline button:hover{transform:translateY(-2px)}.psline button.on{border-color:var(--blue);box-shadow:inset 0 -3px var(--blue)}
+.psline img{height:84px;width:100%;object-fit:contain;filter:drop-shadow(0 8px 6px #1c1e2322)}.psline button.ph img{object-fit:cover;border-radius:8px;filter:none}
+.psline span{font-size:13px;color:var(--muted);line-height:1.3}.psline b{color:var(--blue);margin-right:2px}
+.psctx{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.psctx button{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;background:#fff;padding:4px 14px 4px 4px;font-size:13px;color:var(--muted);cursor:zoom-in}
+.psctx img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+@media (max-width:900px){.pshow{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.psline{grid-template-columns:repeat(2,minmax(0,1fr))}.pslens{display:none!important}.pstage{aspect-ratio:1/1}.pstage img{max-height:52%;margin-bottom:14%}.psname b{font-size:17px}}
+.mfgcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+.mfgcard{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;border:1px solid var(--line);border-radius:14px;background:#fff;padding:20px;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.mfgcard:hover{transform:translateY(-2px);box-shadow:0 10px 26px -18px #1c1e2366}.mfgcard.on{border-color:var(--blue)}
+.mfgimg{display:grid;place-items:center;height:150px;margin:-8px -8px 12px;border-radius:10px;background:radial-gradient(ellipse at 50% 45%,#fff 0%,#f3f4f6 60%,#e8ebef 100%)}.mfgimg img{max-height:118px;max-width:82%;object-fit:contain;filter:drop-shadow(0 12px 10px #1c1e2330);transition:transform .3s}.mfgcard:hover .mfgimg img{transform:translateY(-3px) scale(1.03)}
+.mfgcard h3{margin:4px 0 10px}.mfgcard ul{margin:0 0 12px;padding-left:18px;color:var(--muted);font-size:14.5px}.mfgcard li{margin-bottom:5px}.mfgcard p{font-size:14px;color:var(--muted);margin:0 0 10px}.mfgcard .more{margin-top:auto}.mfgcard p b{color:var(--ink)}
+.mfghl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:18px;border:1px solid var(--line);border-radius:14px;background:var(--soft);overflow:hidden}
+.mfghl div{padding:16px 18px;border-right:1px solid var(--line)}.mfghl div:last-child{border:0}.mfghl b{display:block;font-size:26px;color:var(--blue)}.mfghl span{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.mfgcards{grid-template-columns:minmax(0,1fr)}.mfghl{grid-template-columns:repeat(2,minmax(0,1fr))}.mfghl div:nth-child(2){border-right:0}.mfghl div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.mcgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;margin-top:14px;align-items:start}
+.mcphoto{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 40%,#fff 0%,#f4f5f7 55%,#e6e9ee 100%);aspect-ratio:4/3;display:grid;place-items:center}.mcphoto>img{position:absolute;left:10%;top:7%;width:80%;height:72%;object-fit:contain;cursor:zoom-in;filter:drop-shadow(0 18px 16px #1c1e2333)}
+.mcthumbs{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}.mcthumbs button{width:58px;height:44px;padding:3px;border:2px solid var(--line);border-radius:7px;overflow:hidden;opacity:.75;background:#fff}.mcthumbs button.on{opacity:1;border-color:var(--blue)}.mcthumbs img{width:100%;height:100%;object-fit:contain}
+.mcdwg{margin:12px 0 0;border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px}.mcdwg img{width:100%;max-height:300px;object-fit:contain;cursor:zoom-in}
+.mcsum{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}.mcsum div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.mcsum b{display:block;font-size:20px;white-space:nowrap}.mcsum span{font-size:13px;color:var(--muted)}.mcsum .ok b{color:#16a37b}.mcsum .out b{color:#d4572c}.mcsum .nc b{color:var(--faint)}
+.mcunits{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 8px}
+.mcrows{display:grid;gap:4px}
+.mcrows button{display:grid;grid-template-columns:24px minmax(0,1.1fr) minmax(0,1fr) 66px;gap:10px;align-items:center;border:1px solid transparent;border-radius:8px;background:none;padding:6px 8px;text-align:left;font-size:14px;min-height:40px}
+.mcrows button:hover{background:var(--soft)}.mcrows button.on{border-color:var(--blue);background:var(--bluet)}
+.mcrows .n{width:22px;height:22px;border-radius:50%;background:#1b3a7a;color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+.mcrows .t{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mcrows .v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:13px}.v.nc{color:var(--faint);font-weight:400}
+.gz{position:relative;height:14px;border-radius:7px;background:var(--soft2)}.gz .band{position:absolute;top:0;bottom:0;background:#b9cdf5;border-radius:7px}
+.gz .nom{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:#1b3a7a}
+.gz .dot{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #0002}.gz .dot.in{background:#2457d6}.gz .dot.off{background:#7d8696}
+.mcdet{margin-top:12px}.mcres{margin:10px 0 0;font-weight:700;font-size:15px}.mcres{color:var(--ink)}
+@media (max-width:900px){.mcgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.mcrows button{grid-template-columns:22px minmax(0,1fr) 60px}.mcrows .gz{grid-column:2/4}}
+@media (max-width:900px){.exl{grid-template-columns:minmax(0,1fr)}.tlrow{grid-template-columns:120px minmax(0,1fr)}.axis{margin-left:132px}}
+@media (max-width:900px){.herogrid,.about,.grid2,.flowwrap,.method{grid-template-columns:minmax(0,1fr)}.acts{grid-template-columns:minmax(0,1fr)}.skills{grid-template-columns:repeat(2,minmax(0,1fr))}.bars{grid-template-columns:repeat(2,minmax(0,1fr))}nav.top a.l.x{display:none}}
+@media (max-width:640px){.pgrid,.imps,.gal{grid-template-columns:minmax(0,1fr)}.gth{contain:none;flex-direction:row;overflow-x:auto;height:60px}.gth button{flex:0 0 72px}.phead .thumb{display:none}.skills,.bars{grid-template-columns:minmax(0,1fr)}.jh{flex-direction:column}nav.top .wrap{gap:14px}nav.top .btn{display:none}nav.top a.l{font-size:13px}table{font-size:13px}th,td{padding:8px 6px}}
+@media (max-width:420px){nav.top a.l.y{display:none}}
+@media (prefers-reduced-motion:reduce){.status i,.hot,.steps li.now i{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="Sections"><div class="wrap">
+ <a class="brand" href="#top">Agnes Kung</a>
+ <a class="l" href="#projects">Projects</a><a class="l" href="#manufacturing">Machining</a><a class="l x" href="#activities">Activities</a><a class="l y" href="#experience">Experience</a><a class="l x" href="#education">Education</a><a class="l x" href="#skills">Skills</a>
+ <a class="btn" href="#contact">Get in touch</a>
+</div><div class="progress" id="prog"></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+ <div class="status"><i></i>Currently studying Biomedical and Mechanical Engineering at McMaster University</div>
+ <div class="herogrid">
+  <div><p class="hey">Hi, I'm Agnes!</p><h1>I'm a Biomedical and Mechanical Engineering student.</h1></div>
+  <div>
+   <div class="row"><a class="btn" href="mailto:agnes.kung0125@gmail.com">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/agnes-kung">LinkedIn ↗</a></div>
+   <div class="jump">Jump to: <button data-j="Exoskeleton">Exoskeletons</button><button data-j="Medical devices">Medical devices</button><button data-j="iGEM">iGEM</button><button data-j="Research">Research</button></div></div>
+ </div>
+</div></header>
+
+<div class="worked"><div class="wrap"><div class="lbl">Worked with</div>
+ <div class="logos"><span>Holland Bloorview</span><span>SickKids</span><span>O2Link</span><span>McMaster University</span><span>City of Markham</span></div></div></div>
+
+<section id="about" style="border-top:0"><div class="wrap about">
+ <div><div class="eyebrow">Behind the work</div><h2>Engineering that hands back independence</h2></div>
+ <div><p>Whether it's a wearable sensor tracking a child's gait or a linkage modelled to one patient's anatomy, I like starting from the clinical problem and designing backward into the mechanism.</p>
+  <p>I'm especially drawn to medical device development and rehabilitation technology: anywhere engineering can hand someone back a little more independence.</p></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+ <div class="eyebrow">Things I've built</div><h2>Projects</h2>
+ <p class="muted" style="margin-top:-6px">Click any project to open it. The building-now projects include live simulations you can play with.</p>
+ <div class="filters" id="filters"></div>
+ <div class="pgrid" id="pgrid"></div>
+</div></section>
+
+<section id="manufacturing"><div class="wrap">
+ <div class="eyebrow">Hands-on manufacturing</div><h2>Machining</h2>
+ <p class="muted" style="margin-top:-6px">Three metal parts I machined by hand to technical drawings in McMaster's MECHENG 3MA2 lab (Fall 2026), then measured against the drawing.</p>
+ <div class="mfgcards" id="mfgCards"></div>
+ <div class="mfghl" id="mfgHl"></div>
+ <h3 class="sub">Drawing vs. machined part</h3>
+ <div class="seg" id="mcTabs" role="tablist" aria-label="Machined part"><button class="on" data-i="0">Drill press</button><button data-i="1">Lathe</button><button data-i="2">Milling machine</button></div>
+ <div class="mcgrid">
+  <div>
+   <div class="mcphoto"><img id="mcImg" alt=""><div class="mcthumbs" id="mcThumbs"></div></div>
+   <figure class="mcdwg"><img id="mcDwg" alt=""><figcaption class="cap" id="mcDwgCap"></figcaption></figure>
+  </div>
+  <div>
+   <div class="mcsum" id="mcSum"></div>
+   <div class="mcunits"><span class="cap" style="margin:0">The shaded bar is the drawing's tolerance band, the line is the target, and the dot is what I measured. Click a row for details.</span><div class="seg" id="mcUnit"><button class="on" data-u="in">in</button><button data-u="mm">mm</button></div></div>
+   <div class="mcrows" id="mcRows"></div>
+   <div class="panel mcdet" id="mcDet" aria-live="polite"></div>
+   <p class="cap" id="mcNote"></p>
+  </div>
+ </div>
+</div></section>
+
+<section id="activities"><div class="wrap">
+ <div class="eyebrow">School clubs</div><h2>Activities &amp; teams</h2>
+ <div class="acts">
+  <div class="act"><h3>McMaster Exoskeleton</h3><div class="org">Biomechanics Sub-team · Sept 2025 to present · Hamilton, ON</div>
+   <ul><li>Analyzed lower-limb anatomy and biomechanics, using orientation-sensor data to model healthy gait cycles and inform exoskeleton design.</li><li>Designed and optimized components in Autodesk Inventor and SolidWorks, with kinematic and load-distribution analyses for torque transmission and joint stability.</li><li>Used anatomical imaging and musculoskeletal data to refine component dimensions and joint placement for ergonomic fit.</li></ul>
+   <a href="#p-exo">Lower Limb Exoskeleton →</a> <a href="#p-suit">2027 Suit →</a></div>
+  <div class="act"><h3>McMaster iGEM</h3><div class="org">Dry Lab Research Lead · Jan 2025 to present · Hamilton, ON</div>
+   <ul><li>Led 12 dry lab members through project development and literature review, training them on molecular dynamics, docking, biomolecule visualization and hardware modelling.</li><li>Designed and validated in silico pipelines: protein structure prediction, sequence alignment and binding affinity analysis.</li></ul>
+   <a href="#p-bio">Bioreactor →</a> <a href="#p-react">REACT →</a></div>
+  <div class="act"><h3>McMaster Engineering Society</h3><div class="org">Program Representative · Sept 2024 to Sept 2025 · Hamilton, ON</div>
+   <ul><li>Served as liaison between iBioMed students and the Faculty of Engineering.</li><li>Coordinated events and facilitated meetings.</li></ul></div>
+ </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+ <div class="eyebrow">Where I've worked</div><h2>Experience</h2>
+ <div id="jobs"></div>
+</div></section>
+
+<section id="education"><div class="wrap">
+ <div class="eyebrow">Learning</div><h2>Education</h2>
+ <div class="edu"><div><div class="s">McMaster University</div><div class="muted">Biomedical and Mechanical Engineering</div><div class="cap" style="margin-top:8px">Sept 2024 to April 2029 (expected graduation) · Hamilton, ON</div></div><div style="text-align:right"><div class="g">3.94</div><div class="cap" style="margin:4px 0 0">GPA out of 4.00</div></div></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+ <div class="eyebrow">What I work with</div><h2>Skills</h2>
+ <p class="muted" style="margin-top:-6px">Skills marked ↗ open the project where I used them.</p>
+ <div class="skills" id="skillGrid"></div>
+</div></section>
+
+<footer class="wrap" id="contact" style="padding:20px max(4vw,16px) 50px">
+ <div class="contact"><h2>Let's build something.</h2><p>Always glad to connect about medical devices, rehabilitation tech, or a good engineering problem.</p>
+  <div class="row" style="justify-content:center"><a class="btn" href="mailto:agnes.kung0125@gmail.com">agnes.kung0125@gmail.com</a><a class="btn ghost" href="https://www.linkedin.com/in/agnes-kung">LinkedIn ↗</a></div></div>
+ <div class="fine">Agnes Kung · Markham / Hamilton, ON · © 2026 · Bioreactor CFD data from the McMaster-Canada iGEM 2026 wiki (CC BY 4.0)</div>
+</footer>
+
+<div class="tip" id="tip"></div>
+<div id="lb" role="dialog" aria-label="Image viewer"><button aria-label="Close">×</button><div><img id="lbImg" alt=""><p id="lbCap"></p></div></div>
+
+<!-- ===== project modules, moved into their cards by script ===== -->
+<div hidden>
+ <div id="m-suit">
+  <div class="grid2">
+   <div>
+    <div class="seg" role="tablist" aria-label="Suit views"><button class="on" data-v="a">Assembly on leg scan</button><button data-v="f">Hip motor mount FEA</button></div>
+    <div class="viewer" id="suitView"><img id="suitImg" src="img/suit27-assembly.jpg" alt="2027 suit linkage assembly on a scanned leg mesh"><div class="probe" id="probe"></div></div>
+    <p class="cap" id="suitCap"></p>
+   </div>
+   <div>
+    <div class="stats"><div class="stat"><b>0.0126 mm</b><small>Peak displacement in the static study, at the lower rim of the mount</small></div><div class="stat"><b>&lt; 0.001 mm</b><small>Along the upper bolt pattern, where the mount meets the linkage</small></div></div>
+    <h4 style="margin-top:20px">Where the build is <span class="cap" style="font-weight:400">(click a finished step to view it)</span></h4>
+    <ol class="steps">
+     <li class="done click sel" data-v="a" tabindex="0"><i>1</i><div><b>Fit to the body</b><span>Linkage path checked against a scanned leg mesh.</span></div></li>
+     <li class="done click" data-v="f" tabindex="0"><i>2</i><div><b>Motor mount FEA</b><span>Static displacement study on the hip mount assembly.</span></div></li>
+     <li class="now"><i>3</i><div><b>Fabrication and assembly</b><span>Printing and assembling the suit.</span></div></li>
+     <li><i>4</i><div><b>Testing on the body</b><span>Fit and range-of-motion checks.</span></div></li>
+    </ol>
+   </div>
+  </div>
+ </div>
+
+ <div id="m-exo">
+ <div id="m-parts">
+  <div class="pshead"><h3 class="sub" style="border:0;margin:24px 0 4px;padding:0">The suit and its linkages</h3><span class="cap" style="margin:0">Final suit and its 4 printed linkages · modelled in SolidWorks and Autodesk Inventor</span></div>
+  <div class="pshow">
+   <div class="pstage" id="psStage" tabindex="0" aria-label="Part render. Use the arrow keys to change part.">
+    <div class="pscode" id="psCode"></div>
+    <img id="psImg" alt="">
+    <div class="psfloor"></div>
+        <button class="gnav p" id="psPrev" aria-label="Previous part">←</button><button class="gnav n" id="psNext" aria-label="Next part">→</button>
+    <div class="psname"><b id="psName"></b><span id="psRole"></span></div>
+   </div>
+   <div class="psheet">
+    <div class="eyebrow" style="margin-bottom:6px">Position in the leg</div>
+    <div class="pschain" id="psChain"></div>
+    <p class="muted" id="psDesc" style="margin:14px 0 10px"></p>
+    <div class="eyebrow" style="margin-bottom:6px">Design features</div>
+    <ol class="psfeat" id="psFeat"></ol>
+    <dl class="psspec" id="psSpec"></dl>
+   </div>
+  </div>
+  <div class="psline" id="psLine"></div>
+  <div class="psctx"><span class="cap" style="margin:0">Detail</span>
+   <button data-src="img/exo-scarf.jpg" data-cap="&lt;b&gt;Scarf and splice joint, detail.&lt;/b&gt; The modified joinery between the thigh and knee linkages, chosen because the load case applies bending in both directions."><img src="img/exo-scarf.jpg" alt="">Scarf and splice joint detail</button>
+  </div>
+ </div>
+  <h3 class="sub">Gait and load explorer</h3>
+  <p class="muted">One full walking cycle on a treadmill. Each linkage is coloured by how hard it is working at that moment, so you can see when the thigh, the adjustable link and the knee linkages each take their peak load.</p>
+  <div class="exl">
+   <svg id="exSvg" viewBox="0 0 360 440" aria-label="Animated side view of the exoskeleton leg through a gait cycle"></svg>
+   <div>
+    <div class="phasebox"><span class="stg" id="exStage">Stance</span><b id="exPhase">Initial contact</b><span id="exPct" class="muted">0% of cycle</span></div>
+    <div class="loadlist" id="exParts"></div>
+    <div class="ctl">
+     <label>Gait cycle <input type="range" id="exT" min="0" max="99.5" step="0.5" value="0"><output id="exTV"></output></label>
+     <label>Thigh length <input type="range" id="exHole" min="1" max="4" step="1" value="2"><output id="exHoleV"></output></label>
+    </div>
+    <div class="row"><button class="pill on" id="exGait">❚❚ Pause</button><div class="seg" id="exSpd"><button data-s="0.5">0.5×</button><button class="on" data-s="1">1×</button><button data-s="2">2×</button></div></div>
+    <p class="cap" id="exInfo"></p>
+    <div class="ramp2"><span>Low load</span><i></i><span>Peak load</span></div>
+   </div>
+  </div>
+  <div class="chartbox">
+   <svg id="exChart" viewBox="0 0 900 250" aria-label="Load on each linkage across the gait cycle. Drag to scrub."></svg>
+  </div>
+  <p class="cap"><b>Drag across the chart</b> to scrub through the cycle; click a linkage name to focus its curve and bring it up in the showcase above. Loads are an illustrative estimate: bending in each link is interpolated from normative sagittal hip, knee and ankle moments in healthy walking (Winter, 2009), not measured on the suit.</p>
+ </div>
+
+ <div id="m-react">
+  <h3 class="sub">Overview: one urine sample, three biomarkers</h3>
+  <div class="grid2">
+   <div>
+    <p class="muted">A paper sensor that detects three urinary biomarkers of kidney-transplant rejection from a single urine sample: <b>CXCL9</b>, <b>NGAL</b> and <b>creatinine</b>. Three parallel channels allow simultaneous rolling circle amplification (RCA) reactions, one per biomarker.</p>
+    <p class="muted">Inspired by Hui et al. (2018), the sensor has two zones. <b>Zone 1</b> holds reduced graphene oxide (rGO) with bound DNA aptaprimers specific to each biomarker, printed onto nitrocellulose. <b>Zone 2</b> holds the RCA reagents, hemin to form the G-quadruplex/hemin DNAzyme, and trehalose and pullulan to keep the reagents stable at room temperature.</p>
+    <div class="bmk" id="bmk"><button class="on" data-b="all">All channels</button><button data-b="CXCL9">CXCL9</button><button data-b="NGAL">NGAL</button><button data-b="Creatinine">Creatinine</button></div>
+    <p class="cap" id="bmkInfo"></p>
+   </div>
+   <figure class="fz"><img src="img/react-birdseye.jpg" alt="Bird's-eye view of the paper sensor and reaction zones"><figcaption class="cap"><b>Schematic 1.</b> Sample flows from the central loading zone into Zone 1 (yellow), then, once the halves slide together, into Zone 2 (blue). The sensor (white) sits on a slider and base (grey).</figcaption></figure>
+  </div>
+
+  <h3 class="sub">Run the test yourself</h3>
+  <p class="muted">An interactive version of the sensor's assembly animation. Work through the test the way a patient would: open the lids, add the sample, and <b>drag the right half along its rail</b> to slide the paper sensor together.</p>
+  <div class="walk">
+   <div class="wstage">
+    <svg id="wSvg" viewBox="0 0 700 320" aria-label="Top view of the REACT paper sensor device"></svg>
+    <div class="wflash" id="wFlash"></div>
+    <div class="wtools"><span class="row" id="wTools"></span><button class="pill" id="wReset">↺ Start over</button></div>
+    <p class="cap" id="wHint" style="margin:6px 0 0"></p><div class="wres" id="wRes"></div>
+   </div>
+   <div class="wpanel">
+    <ol class="wsteps" id="wSteps"></ol>
+    <div class="panel" style="margin-top:12px"><div class="eyebrow" id="wN" style="margin-bottom:2px"></div><h4 id="wT" style="margin-bottom:6px"></h4><p class="muted" id="wD" style="margin:0 0 8px"></p><p class="cap" id="wWhy" style="margin:0"></p></div>
+   </div>
+  </div>
+  <p class="cap">Assembly animation by Agnes Kung: <a href="https://video.igem.org/w/fu9K4nYLA4AWMi1EwDpF2u">watch on iGEM Video ↗</a>. Total test time from the wiki: 1 h 41 min.</p>
+
+<h3 class="sub">Device design</h3>
+  <div class="mtabs" id="dTabs"><button class="on" data-t="paper">Paper: nitrocellulose</button><button data-t="slider">Sliding component</button><button data-t="lid">Lid cover</button><button data-t="next">Prototype and next steps</button></div>
+  <div class="dpane on" data-t="paper"><div class="grid2"><div>
+   <p class="muted">Nitrocellulose, made by nitrating cellulose, is hydrophilic and porous (porosity 75–81%, absorption 2038 mg·g⁻¹), which suits a microfluidic paper sensor (Bordbar et al., 2021). Hydrophobic wax barriers outline the three channels that guide capillary flow of the sample and reaction products.</p>
+   <p class="muted">Bovine serum albumin (BSA) is functionalized across the zones and bridge as a blocking reagent, minimizing background signal from non-specific binding to the aptamer on rGO (Xiao &amp; Isaacs, 2012).</p></div>
+   <figure class="fz"><img src="img/react-disconnect.jpg" alt="Paper sensor halves disconnected"><figcaption class="cap"><b>Schematic 2.</b> The halves start disconnected for the rGO–aptaprimer displacement step in Zone 1.</figcaption></figure></div></div>
+  <div class="dpane" data-t="slider"><div class="grid2"><div>
+   <p class="muted">Hui et al. (2018) folded the paper to bridge the sample into the RCA well. A <b>slider</b> is more durable and easier to handle than fragile folded paper, and lets the halves connect or disconnect freely for timed reagent addition, so the sample incubates long enough to free enough aptaprimer before RCA.</p>
+   <p class="muted"><b>Lower component:</b> the load-bearing base that keeps the device rigid and flat so the paper does not deform. <b>Upper component:</b> a translating platform with one translational degree of freedom that mates precisely with the base, giving alignment and a reliable compressive seal between the two pads.</p>
+   <p class="muted">Complementary linear guide rails give a kinematic constraint; chamfers centre the parts and stop them separating; a shallow recess blocks vertical travel. The sliding interfaces use an <b>H7/g6 clearance fit</b>: tight enough to limit lateral play, loose enough to avoid high friction.</p>
+   <p class="muted">Both parts are <b>PLA</b>: lightweight with a high elastic modulus (typically 2.7–4.0 GPa). Its rigid chains pack into ordered crystal lattices that resist deformation, scratching and wear between the sliding parts.</p>
+   <div class="fit"><div class="fitbar"><span>Hole H7</span><i id="fitH"></i></div><div class="fitbar"><span>Shaft g6</span><i id="fitS"></i></div><label class="speed">Nominal size <input type="range" id="fitN" min="3" max="50" value="10"><b id="fitV">10 mm</b></label><p class="cap" id="fitTxt" style="margin:4px 0 0"></p></div></div>
+   <div><div class="thumbsel" id="slThumbs"></div><figure class="fz"><img id="slImg" alt=""><figcaption class="cap" id="slCap"></figcaption></figure></div></div></div>
+  <div class="dpane" data-t="lid"><div class="grid2"><div>
+   <p class="muted">The lid protects and mechanically secures the paper device, preventing contamination and evaporation; the sealed environment also improves fluid contact between components.</p>
+   <p class="muted">It rotates about its hinge between <b>0° and 160°</b>. It is <b>polycarbonate</b>: many medical-grade PCs are ISO 10993 certified, transparency is above 90% for clear detection, and it is biocompatible and resistant to alcohol stress-cracking. Aromatic rings give rigidity; carbonate linkages dissipate stress to prevent cracking under repeated sliding and locking.</p>
+   <svg viewBox="0 0 300 150" class="hinge" id="hinge" aria-label="Lid hinge angle"></svg>
+   <label class="speed">Lid angle <input type="range" id="lidA" min="0" max="160" value="110"><b id="lidV">110°</b></label></div>
+   <div><div class="thumbsel" id="lidThumbs"></div><figure class="fz"><img id="lidImg" alt=""><figcaption class="cap" id="lidCap"></figcaption></figure></div></div></div>
+  <div class="dpane" data-t="next"><div class="grid2"><div>
+   <p class="muted"><b>Tilt during incubation.</b> To keep the sample in Zone 1 during the rGO–aptaprimer incubation and stop it running off the paper, the next version tilts the Zone 1 half. A pop-pin system on the top slider would give a range of heights, with a second paper holder on a jointed stand held at each pin level.</p>
+   <p class="muted"><b>Better tolerances.</b> The 3D-printed prototype had looser tolerances and minor misalignments, and mating areas wore over time, shortening the device's life. Optimizing the fit would make sliding smoother and reduce wear.</p></div>
+   <figure class="fz"><img src="img/react-proto.jpg" alt="Physical 3D-printed prototype"><figcaption class="cap"><b>Figure 1.</b> The physical prototype.</figcaption></figure></div></div>
+
+  <h3 class="sub">Microfluidic channel design</h3>
+  <p class="muted">Flow is passive: capillary action pulls liquid through the paper's cellulose microchannels with no external energy. Modelled in Autodesk Inventor and sized with two equations: Owens–Wendt for the contact angle, then Lucas–Washburn for how far the sample wicks over time. Change any value and the results update.</p>
+  <div class="grid2">
+   <div class="panel calc">
+    <h4>1. Contact angle (Owens–Wendt)</h4>
+    <div class="eq">γ<sub>L</sub>(1 + cos θ) = 2[√(γ<sub>S</sub><sup>d</sup>γ<sub>L</sub><sup>d</sup>) + √(γ<sub>S</sub><sup>p</sup>γ<sub>L</sub><sup>p</sup>)]</div>
+    <div class="inputs" id="owIn"></div>
+    <div class="result"><span>θ =</span><b id="owT"></b></div>
+    <p class="cap" id="owS" style="margin:6px 0 0"></p>
+    <p class="cap">Splits surface energy into dispersive (Van der Waals) and polar (hydrogen bonding, dipole) parts for a better estimate than a single value (Rudawska et al., 2009). The team's result: 44.6°, good wettability.</p>
+   </div>
+   <div class="panel calc">
+    <h4>2. Wicking length (Lucas–Washburn)</h4>
+    <div class="eq">L(t) = √(γ r cos θ / 2μ) · √t &nbsp;&nbsp; v(t) = dL/dt ∝ 1/√t</div>
+    <div class="inputs" id="lwIn"></div>
+    <label class="speed" style="margin-top:8px">Time <input type="range" id="lwT" min="1" max="600" value="300"><b id="lwTV">300 s</b></label>
+    <svg id="lwChart" viewBox="0 0 320 150" class="lwc"></svg>
+    <div class="result"><span>L =</span><b id="lwL"></b><span class="muted" id="lwV"></span></div>
+    <p class="cap" id="lwS" style="margin:6px 0 0"></p>
+   </div>
+  </div>
+  <p class="cap">γ<sub>SL</sub> comes from the Girifalco–Good approximation, γ<sub>SL</sub> = γ<sub>S</sub> + γ<sub>L</sub> − 2√(γ<sub>S</sub>γ<sub>L</sub>)[1 − β(γ<sub>S</sub> − γ<sub>L</sub>)²], with γ<sub>S</sub> = 54.9 and γ<sub>L</sub> = 70 mN/m and β = 0.0001247, giving 4.45 mN/m. Length is split across the three channels. The equations don't depend on sample volume: given enough liquid, distance is set by material properties as capillary pressure balances viscous resistance. The result: liquid in Zone 1 reaches Zone 2 within 5 minutes.</p>
+
+  <h3 class="sub">SnapREACT smartphone app</h3>
+  <p class="muted">Judging colour by eye is subjective, especially at tiny biomarker concentrations. SnapREACT scans the whole sensor in one photo and reads NGAL, creatinine and CXCL9 together. The G4 DNAzyme reaction with H₂O₂, ABTS and TMB gives a teal-blue signal (Liu et al., 2018). Built in React Native with Expo for iOS and Android from one codebase, with local storage synced to Firebase.</p>
+  <div class="appgrid">
+   <div><div class="phone"><img id="appImg" alt=""></div><div class="apptabs" id="appTabs"></div></div>
+   <div>
+    <h4 id="appT"></h4><p class="muted" id="appD"></p>
+    <h4 style="margin-top:20px">Image processing pipeline</h4>
+    <ol class="pipe" id="pipe"></ol>
+   </div>
+  </div>
+
+  <h4 style="margin-top:30px">Try the calibration</h4>
+  <p class="muted">Each sensor carries four reference patches of known blue intensity. The app measures them in your photo and uses piecewise linear interpolation to map each well's measured colour back to its true intensity, cancelling out lighting and camera differences. Change the lighting and watch the raw readings drift while the calibrated readings hold.</p>
+  <div class="grid2">
+   <div><svg id="calSvg" viewBox="0 0 360 200" class="calsvg" aria-label="Simulated sensor photo"></svg>
+    <div class="ctl"><label>Brightness <input type="range" id="calB" min="0.55" max="1.45" step="0.01" value="0.8"><output id="calBV"></output></label><label>Warm / cool cast <input type="range" id="calC" min="-40" max="40" value="18"><output id="calCV"></output></label><label>CXCL9 signal <input type="range" id="calW0" min="20" max="230" value="150"><output id="calW0V"></output></label></div></div>
+   <div class="scroll"><table><thead><tr><th>Well</th><th class="n">True</th><th class="n">Raw photo</th><th class="n">Calibrated</th></tr></thead><tbody id="calT"></tbody></table>
+    <p class="cap">Simulated values on a 0–255 blue-intensity scale, illustrating the team's method. The urine's own colour is also subtracted, using the loading zone as a baseline (Akraa et al., 2018).</p></div>
+  </div>
+
+  <details class="more2"><summary>Patient-centred interface and guided photography</summary>
+   <p class="muted">The average kidney-transplant recipient is 52 (Beerli et al., 2022), and patients over 70 are the fastest-growing group needing transplants (Mehta et al., 2023), so the interface is designed for older adults: four main tabs and no nested menus.</p>
+   <p class="muted">The camera shows a frame overlay for sensor placement, with instructions that adapt to conditions: orientation guidance by default, and prompts to find better light when it is too dark or overexposed. After capture, "Use This Photo" and "Retake" allow a quality check; a progress screen covers the 10–15 second analysis.</p></details>
+  <details class="more2"><summary>Limitations and future steps</summary>
+   <p class="muted">Manufacturing variability in nitrocellulose colour, reagent quantity or drying could make reference patches and wells non-uniform and skew calibration. Users should photograph the sensor against a contrasting background to help edge detection and focus.</p>
+   <p class="muted">Researcher Akansha Prasad (McMaster) suggested imaging each well separately for accuracy; the team weighed this against minimal user input and kept one-photo scanning of all three wells.</p>
+   <p class="muted">Time and resources prevented lab testing of the sensor and readout, so there is no standard curve yet linking blue intensity to biomarker levels. Future work: test whether the app separates healthy from graft-rejection levels, and use creatinine to normalize CXCL9 and NGAL for urine dilution. HSV colour space could detect concentrations below 5 nM better than RGB subtraction (Kurniastuti et al., 2022), and CNNs could improve edge detection in low-contrast images.</p></details>
+  <details class="more2"><summary>References</summary><ol class="refs">
+   <li>Akraa, S., et al. (2018). A smartphone-based point-of-care quantitative urinalysis device for chronic kidney disease patients. <i>J. Network and Computer Applications</i>, 115, 59–69.</li>
+   <li>Beerli, N., et al. (2022). Age at time of kidney transplantation as a predictor for mortality, graft loss and self-rated health status. <i>Transplant International</i>, 35.</li>
+   <li>Bordbar, M. M., et al. (2021). Disposable paper-based biosensors for the point-of-care detection of hazardous contaminations: a review. <i>Biosensors</i>, 11(9), 316.</li>
+   <li>Cai, J., et al. (2021). Lucas–Washburn equation-based modeling of capillary-driven flow in porous systems. <i>Langmuir</i>, 37(5), 1623–1636.</li>
+   <li>Chen, F., et al. (2023). Multiplex detection of infectious diseases on microfluidic platforms. <i>Biosensors</i>, 13(3), 410.</li>
+   <li>Hu, J., et al. (2014). Advances in paper-based point-of-care diagnostics. <i>Biosensors and Bioelectronics</i>, 54, 585–597.</li>
+   <li>Hui, C. Y., Liu, M., Li, Y., &amp; Brennan, J. D. (2018). A paper sensor printed with multifunctional bio/nano materials. <i>Angewandte Chemie</i>, 57(17), 4549–4553.</li>
+   <li>Kurniastuti, I., et al. (2022). Determination of HSV color feature in kidney histology image. <i>J. Physics</i>, 2157(1), 012020.</li>
+   <li>Liu, S., et al. (2018). A sensitive colorimetric aptasensor based on trivalent peroxidase-mimic DNAzyme and magnetic nanoparticles. <i>Analytica Chimica Acta</i>, 1018, 86–93.</li>
+   <li>Lucas–Washburn equation: an overview. ScienceDirect Topics (retrieved October 4, 2025).</li>
+   <li>Mehta, J., et al. (2023). Kidney transplant outcomes in recipients over the age of 70. <i>Cureus</i>.</li>
+   <li>Punekar, N. S. (2025). Enzymatic oxidation-reduction reactions. In <i>ENZYMES: Catalysis, Kinetics and Mechanisms</i> (pp. 391–411). Springer Nature.</li>
+   <li>Rudawska, A., &amp; Jacniacka, E. (2009). Analysis for determining surface free energy uncertainty by the Owen–Wendt method. <i>Int. J. Adhesion and Adhesives</i>, 29(4), 451–457.</li>
+   <li>Xiao, Y., &amp; Isaacs, S. N. (2012). ELISA and blocking with bovine serum albumin: not all BSAs are alike. <i>J. Immunological Methods</i>, 384(1–2), 148–151.</li></ol>
+   <p class="cap">Content and figures from the <a href="https://2025.igem.wiki/mcmaster-canada/hardware">McMaster-Canada iGEM 2025 hardware page</a>, licensed CC BY 4.0.</p></details>
+ </div>
+
+ <div id="m-bio">
+  <h3 class="sub">Iteration 4: the current build</h3>
+  <div class="grid2">
+   <div><div class="viewer" id="bioView"><img src="img/bioreactor-assembly.jpg" alt="Rendered Iteration 4 bioreactor on its printed stand"></div></div>
+   <div class="panel" aria-live="polite"><div class="eyebrow" style="margin:0 0 6px">Click a part</div><div class="plist" id="plist"></div><h4 id="partT" style="margin-top:16px"></h4><p id="partD" class="muted" style="margin:0"></p></div>
+  </div>
+
+  <h3 class="sub">Impeller design with CFD</h3>
+  <p class="muted">Mixing is one of the bioreactor's two core jobs, and the impeller decides it. Because it's 3D-printed, almost any shape was possible, but growing a culture with every candidate would take weeks. Instead we simulated three standard designs in the flask, each scaled to the same 25 mm diameter so only the shape changed.</p>
+  <div class="imps" id="imps"></div>
+  <p class="cap"><b>Figure 1.</b> The three impellers. Drag a model to turn it.</p>
+
+  <h4 style="margin-top:30px">Methods</h4>
+  <div class="mtabs" id="mtabs"></div>
+  <div class="method"><svg class="mfig" viewBox="0 0 420 260" id="mfig" aria-label="Flask cross-section used for the simulation"></svg><div><h4 id="mT"></h4><p id="mD" class="muted"></p></div></div>
+  <div class="scroll" style="margin-top:14px"><table>
+   <thead><tr><th>Measure</th><th>How it was calculated</th><th>Why it matters</th></tr></thead>
+   <tbody><tr><td>Poorly mixed volume (%)</td><td>Share of liquid where mixing flow is below 0.02 m/s (5% of blade tip speed)</td><td>Where cells, nutrients and oxygen are not exchanged</td></tr>
+   <tr><td>Turnover time (s)</td><td>Liquid volume ÷ largest upward flow rate</td><td>How quickly the culture cycles past the impeller</td></tr>
+   <tr><td>Power drawn (mW)</td><td>Torque on the impeller × speed</td><td>Motor load and heat into the culture</td></tr>
+   <tr><td>Peak shear rate (1/s)</td><td>99th percentile of shear rate</td><td>Mechanical stress on cells</td></tr></tbody></table></div>
+  <p class="cap"><b>Table 1.</b> Lower is better for all four.</p>
+
+  <h4 style="margin-top:30px">Results: pick an impeller to explore its flow</h4>
+  <div class="seg" id="impPick" role="tablist" aria-label="Impeller"></div>
+  <div class="flowwrap" style="margin-top:12px">
+   <div>
+    <div class="ctrl"><label class="speed">Flow speed <input type="range" id="spd" min="0.1" max="2" step="0.1" value="0.5"><span id="spdV">0.5×</span></label><span class="row"><button class="pill on" id="pmBtn">Poorly mixed</button><button class="pill" id="pauseBtn">Pause</button></span></div>
+    <div class="fig" id="flowFig"><div class="fprobe" id="fprobe"></div><canvas id="flow" aria-label="Animated flow field. Click to release a dye trace."></canvas></div>
+    <div class="legend"><span><i class="ramp"></i>Mixing flow, 0 to 0.2 m/s</span><span>· Liquid paths</span><span style="color:#d23b3b">▢ Poorly mixed (&lt; 0.02 m/s)</span><span>■ Shaft and hub</span></div>
+    <p class="cap"><b>Figure 2.</b> Up/down and in/out flow on a vertical cut, averaged around the shaft, from the exported SimScale field. <b>Hover</b> to read the local flow speed; <b>click inside the flask</b> to release a dye trace and watch where the liquid carries it.</p>
+   </div>
+   <div class="panel"><h3 id="rT"></h3><p id="rD" class="muted"></p><div class="stats" id="rS"></div></div>
+  </div>
+  <div class="bars" id="bars" style="margin-top:26px"></div>
+  <p class="cap"><b>Figure 3.</b> Mixing, power and shear at 300 RPM. Click a bar to open that impeller.</p>
+  <div class="scroll"><table><thead><tr><th>Impeller</th><th class="n">Poorly mixed (%)</th><th class="n">Turnover (s)</th><th class="n">Power (mW)</th><th class="n">Peak shear (1/s)</th><th class="n">Mesh cells</th><th class="n">Iterations</th></tr></thead><tbody id="sumT"></tbody></table></div>
+  <div class="verdict"><h4>Decision: Rushton turbine</h4><p class="muted" style="margin:0">It left only 14% of the liquid poorly mixed and cycled the culture every 1.5 s, about half the poorly mixed volume of the pitched-blade (28%) and marine (31%) designs. Its 2.8 mW draw is a tiny fraction of what the NEMA-17 motor delivers, and all three stayed far below the shear <i>E. coli</i> tolerates in stirred fermenters, so better mixing came at no practical cost.</p></div>
+ </div>
+</div>
+
+<script src="cfd-data.js"></script>
+<script src="fea-src.js"></script>
+<script>
+{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- data from the current portfolio ---------- */
+const PROJ=[
+ {id:'suit',t:'2027 Exoskeleton Suit',d:'2027',wip:1,f:['Exoskeleton','CAD & FEA'],thumb:'suit27-assembly',short:'Hip-driven exoskeleton suit, fitted against a scanned leg, with FEA on the motor mount.',
+  b:['Moves the drive to the hip: a motor sits in a circular mount at the top of the leg linkage, and the linkage carries assistance down past the knee.','Checked the linkage path against a 3D-scanned body mesh before printing, so the curve clears the leg.','Ran a static displacement study in SolidWorks Simulation on the hip motor mount, the most heavily loaded printed part.'],module:'m-suit'},
+ {id:'bio',t:'Bacterial Growth Bioreactor',d:'2026',wip:1,f:['iGEM','CFD'],thumb:'bioreactor-assembly',short:'Low-cost, modular bioreactor for reproducible OMV production in engineered E. coli, with the impeller chosen by CFD.',
+  b:['Designing a low-cost, modular bioreactor for reproducible OMV production from engineered E. coli, addressing the limited environmental control of shake-flask cultures.','Iteration 1 mapped every function a bioreactor might need: motor-driven impeller, sparger, air filtration, and ports for probes and reagents.','Iteration 2 simplified to the essentials: an Erlenmeyer flask on a magnetic stir plate, an air pump for aeration, and a 3D-printed lid housing an Arduino and OD600 sensor.','Iteration 3 refined the lid ports and added an elevated motor mount once the motor proved larger than expected, while thinning the stand to save material.','Iteration 4, now being built and tested, uses a 25 mm Rushton turbine selected by comparing three impellers in CFD.'],
+  links:[['https://2026.igem.wiki/mcmaster-canada/hardware','iGEM hardware page ↗']],module:'m-bio',
+  g:[['bio-it1-sketch','<b>Iteration 1, concept sketch.</b> Mapped every function a bioreactor might need before deciding what to keep: motor-driven impeller, sparger, air filtration, and ports for probes and reagents.'],
+     ['bio-it2-render','<b>Iteration 2, labelled render.</b> Simplified to the essentials: an Erlenmeyer flask on a magnetic stir plate, an air pump for aeration, and a custom lid housing the motor and electronics.'],
+     ['bio-it2-lid','<b>Iteration 2, printed lid.</b> First printed port piece for the custom lid, holding the stir and air lines and probe access in place.'],
+     ['bio-it3-render','<b>Iteration 3, assembled render.</b> Refined port dimensions and added a dedicated elevated mount once the motor proved larger than expected, while thinning the stand.'],
+     ['bio-it3-lid','<b>Iteration 3, printed lid.</b> Updated honeycomb-vented lid assembly next to the Iteration 2 prototype for comparison.']]},
+ {id:'exo',t:'Lower Limb Exoskeleton',d:'May 2026',f:['Exoskeleton','CAD & FEA'],thumb:'exo-ace',module:'m-exo',short:'Wearable lower-limb exoskeleton with anatomically modelled linkages custom-fit to individual pilot geometry.',
+  b:['Built for the ACE competition at McMaster to perform firefighter-like tasks: climbing stairs, carrying weight, kicking down doors. The suit uses AI to predict the pilot\'s next move and assists through electrical actuation and mechanical load distribution.','Engineered anatomically modelled linkages custom-fit to individual pilot geometry, integrating a motor control system to actuate joints and assist gait.','Modelled linkages, joint mechanisms and gearbox assemblies in SolidWorks, using anatomical imaging and musculoskeletal data to align joint placement with pilot anatomy.','Performed kinematic and load-distribution analyses in Autodesk Inventor and SolidWorks to optimize gearbox design and torque transmission.'],
+  links:[['https://www.macexo.com/design','Project site ↗']],
+},
+ {id:'ward',t:'Ward Research Project: AFO Analysis',d:'Aug 2026',f:['Research'],thumb:'ward-poster',award:'Best Research Presentation Award',awardSub:'20th Annual Anne & David Ward Summer Research Program at Holland Bloorview: 26 students selected from 1,600+ applicants',links:[['https://hollandbloorview.ca/research-education/bloorview-research-institute/awards-events/ward-research-day','Ward Research Day ↗']],short:'Award-winning comparative clinical gait study on traditional vs. digitally fabricated ankle-foot orthoses in pediatric patients.',
+  b:['Designed and conducted a comparative clinical gait study of traditional and digitally fabricated AFOs in pediatric participants with lower-limb impairments.','Collected and interpreted walking speed, step-length symmetry and single-support symmetry with the GAITRite® system.','Won Best Research Presentation at the 20th Annual Anne & David Ward Summer Research Program.'],
+  g:[['ward-poster','<b>Research poster</b> presented at the 20th Annual Anne &amp; David Ward Summer Research Program.']]},
+ {id:'react',t:'REACT: McMaster iGEM',d:'2025',f:['iGEM','Research','Medical devices'],thumb:'react-proto',module:'m-react',short:'At-home paper sensor and SnapREACT phone app to detect three kidney-transplant rejection biomarkers from one urine sample; led the dry lab pipeline.',
+  b:['Led 12 dry lab members through project development and literature review, training them on molecular dynamics, molecular docking, biomolecule visualization and hardware modelling.','Designed and validated in silico pipelines: protein structure prediction, sequence alignment and binding affinity analysis, with reproducible workflows.'],
+  links:[['https://2025.igem.wiki/mcmaster-canada/hardware','Hardware page ↗'],['https://2025.igem.wiki/mcmaster-canada/','Team wiki ↗']]},
+ {id:'o2',t:'Automated Oxygen Flowmeter',d:'Sept 2025',f:['Medical devices'],short:'Precision oxygen flow regulation assembly for ICU delivery systems, validated against safety and manufacturability constraints.',
+  b:['Designed a precision oxygen flow regulation assembly with electromechanical valves, pressure-rated fittings and sealed interfaces for leak-free delivery under variable inlet pressure.','Performed pressure–flow modelling, tolerance stack-up and mechanical failure analysis to prevent over-pressurization and meet ICU safety requirements.','Developed a modular, manufacturable architecture for wall-mounted and portable oxygen systems, with medical-grade material selection.']},
+ {id:'joytap',t:'JOYTAP: Assistive Stylus Tapper',d:'Feb 2025',f:['Medical devices'],thumb:'joytap-final',short:'Assistive device for manual dexterity impairment, built on a Raspberry Pi with closed-loop sensor control.',
+  b:['Integrated a Raspberry Pi, BNO055 sensor and LKY62 servos, using sensor fusion and calibrated PWM cycles to tune the mechanical linkages for accurate actuation.','Wrote Python firmware with RPi.GPIO for real-time, closed-loop control and stable sensor–actuator coordination.'],
+  g:[['joytap-final','<b>Final prototype</b> of the functional JoyTap device.'],['joytap-sketch','<b>Detailed sketches</b> of the proposed mechanism.']]},
+ {id:'lock',t:'Lock N\' Walk: Custom Hip Implant',d:'Dec 2024',f:['Medical devices','CAD & FEA'],short:'Custom hip implant for a patient with developmental hip dysplasia, optimized for biomechanics and biomaterial compatibility.',
+  b:['Designed a custom hip implant in Autodesk Inventor for a patient with developmental hip dysplasia.','Optimized for hip biomechanics, integrating specialized features and selecting biomaterials with computational techniques.']}];
+
+const JOBS=[
+ {r:'Research and Development Product Intern',o:'The Hospital for Sick Children · Toronto, ON',d:'Aug 2025 – Present',now:1,b:['Designed and prototyped a wrist-worn IMU wearable in SolidWorks with a pediatric-optimized housing and strap for objective movement disorder monitoring.','Contributed to an algorithm translating raw IMU data into metrics for dystonic movement severity, distinguishing sustained or irregular dystonic patterns from rhythmic tremor.','Translated a clinical assessment gap into an engineering design problem through literature review and stakeholder engagement with clinical and engineering teams.']},
+ {r:'Gait Analysis Intern',o:'Holland Bloorview Kids Rehabilitation Hospital · Toronto, ON',d:'May 2026 – Present',now:1,b:['Led operation and data management of a markerless motion capture system (Theia3D) for a CIHR-funded Ankle-Foot Orthoses study in the PROPEL Lab under Dr. Jan Andrysek.','Designed and executed a validation study benchmarking Theia3D against the GAITRite instrumented walkway for clinical gait lab integration.','Won Best Research Presentation Award at the 20th Annual Anne & David Ward Summer Research Program: 26 students selected from 1,600+ applicants.']},
+ {r:'Research and Development Assistant',o:'O2Link · Hamilton, ON',d:'Jun 2025 – Sept 2025',b:['Designed structural components, tubing and housings for a 6-DOF robotic arm regulating an automated ICU oxygen flowmeter, with a precision belt-tensioning system.','Integrated servo motors, sensors and control electronics, programming coordinated multi-axis motion with load distribution, torque limits and repeatable positioning.','Performed kinematic analysis, deflection simulations and system validation to optimize stiffness, actuator performance and flow reliability.']},
+ {r:'Systems Engineering Analyst (Co-op)',o:'City of Markham · Markham, ON',d:'May 2025 – Aug 2025',b:['Managed technical validation data for mechanical assemblies, interpreting test results to identify failure modes and ensure compliance with municipal standards.','Assisted inspections of backflow prevention parts: mechanical check valves, pressure differentials and anti-siphon mechanisms.','Worked with inspectors, engineers and operations staff to outline inspection reports and improve the validation workflow.']},
+ {r:'Taekwondo Coach',o:'Master Myung\'s Taekwondo Academy · Markham, ON',d:'Aug 2020 – Aug 2024',b:['Kukkiwon Certified 4th Degree Black Belt with over 12 years of training.','Coached students of all ages, fostering growth, discipline and teamwork.','Managed gym operations including inquiries, email correspondence and sales.']}];
+
+const SKILLS={CAD:[['SolidWorks',['suit','exo']],['Autodesk Inventor',['exo','lock','react']],['AutoCAD'],['Onshape',['bio']],['Blender']],
+ Manufacturing:[['Additive Manufacturing',['bio','exo']],['Subtractive Machining',['#manufacturing']],['Drill press',['#manufacturing']],['Milling machine',['#manufacturing']],['Lathe',['#manufacturing']],['Sheet-metal Fabrication']],
+ Engineering:[['FEA',['suit']],['Technical Drawings'],['Material Selection',['lock','o2']],['Project Management']],
+ 'Simulation & code':[['CFD (SimScale)',['bio']],['Python',['bio','joytap']],['Arduino',['bio']],['Raspberry Pi',['joytap']]]};
+
+/* ---------- render projects ---------- */
+const filters=['All',...new Set(PROJ.flatMap(p=>p.f))];
+$('#filters').innerHTML=filters.map((f,i)=>`<button class="${i?'':'on'}" data-f="${esc(f)}">${esc(f)}</button>`).join('');
+$('#pgrid').innerHTML=PROJ.map(p=>`<article class="pcard" id="p-${p.id}" data-f="${esc(p.f.join('|'))}">
+ <button class="phead" aria-expanded="false"><div><div class="meta">${p.wip?'<span class="wip">BUILDING NOW</span>':''}${p.award?'<span class="awd">AWARD WINNER</span>':''}<span>${esc(p.d)}</span><span>· ${esc(p.f.join(' · '))}</span></div><h3>${esc(p.t)}</h3><p class="short">${esc(p.short)}</p><span class="more">Open project →</span></div>${p.thumb?`<img class="thumb" src="img/${p.thumb}.jpg" alt="">`:''}</button>
+ <div class="pbody"><button class="close">Close ×</button>${p.award?`<div class="award"><div class="medal">★</div><div><b>${esc(p.award)}</b><span>${esc(p.awardSub)}</span></div></div>`:''}<ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+ ${(p.links||[]).map(([h,t])=>`<a class="plink" href="${h}">${esc(t)}</a>`).join('')}
+ ${p.g?`<div class="gal ${p.g.length==1?'single':''}" data-p="${p.id}"><div class="gmain"><img alt=""><button class="gnav p" aria-label="Previous">←</button><button class="gnav n" aria-label="Next">→</button></div><div class="gth">${p.g.map(([s],i)=>`<button data-i="${i}" aria-label="Image ${i+1}"><img src="img/${s}.jpg" alt=""></button>`).join('')}</div></div><p class="gcap"></p>`:''}
+ <div class="mod"></div></div></article>`).join('');
+PROJ.forEach(p=>{if(p.module)$(`#p-${p.id} .mod`).appendChild($('#'+p.module))});
+$$('.gal').forEach(g=>{const p=PROJ.find(x=>x.id==g.dataset.p);let i=0;const card=g.closest('.pcard'),cap=card.querySelector('.gcap'),img=g.querySelector('.gmain img');
+ const set=k=>{i=(k+p.g.length)%p.g.length;img.src=`img/${p.g[i][0]}.jpg`;cap.innerHTML=p.g[i][1];g.querySelectorAll('.gth button').forEach((b,j)=>b.classList.toggle('on',j==i))};
+ g.querySelectorAll('.gth button').forEach(b=>b.onclick=e=>{e.stopPropagation();set(+b.dataset.i)});
+ g.querySelector('.gnav.p').onclick=e=>{e.stopPropagation();set(i-1)};g.querySelector('.gnav.n').onclick=e=>{e.stopPropagation();set(i+1)};
+ if(p.g.length<2)g.querySelectorAll('.gnav').forEach(b=>b.hidden=true);
+ g.querySelector('.gmain').onclick=()=>{$('#lbImg').src=img.src;$('#lbCap').innerHTML=cap.innerHTML;$('#lb').classList.add('show')};
+ card.gal={set:k=>set(k),step:d=>set(i+d)};set(0)});
+$('#lb').onclick=e=>{if(e.target.id=='lb'||e.target.tagName=='BUTTON')$('#lb').classList.remove('show')};
+addEventListener('keydown',e=>{if(e.key=='Escape')$('#lb').classList.remove('show')});
+const openCard=(card,state,quiet)=>{const o=state??!card.classList.contains('open');card.classList.toggle('open',o);card.querySelector('.phead').setAttribute('aria-expanded',o);
+ if(o&&!quiet)requestAnimationFrame(()=>card.scrollIntoView({behavior:'smooth',block:'start'}))};
+$$('.pcard').forEach(c=>{c.querySelector('.phead').onclick=()=>openCard(c);c.querySelector('.close').onclick=()=>openCard(c,false)});
+$$('#filters button').forEach(b=>b.onclick=()=>{$$('#filters button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;
+ $$('.pcard').forEach(c=>c.classList.toggle('hide',f!='All'&&!c.dataset.f.split('|').includes(f)))});
+const goProj=id=>{const c=$('#p-'+id);if(!c)return;$$('#filters button')[0].click();openCard(c,true)};
+$$('a[href^="#p-"]').forEach(a=>a.onclick=e=>{e.preventDefault();goProj(a.getAttribute('href').slice(3))});
+openCard($('#p-suit'),true,true);
+
+/* ---------- experience, skills ---------- */
+$('#jobs').innerHTML=JOBS.map((j,i)=>`<div class="job ${i?'':'open'}"><button class="jh" aria-expanded="${!i}"><div><b>${esc(j.r)}</b><div class="org">${esc(j.o)}</div></div><div class="jr">${j.now?'<span class="nowtag">NOW</span>':''}<span>${esc(j.d)}</span><span class="chev">▾</span></div></button><div class="jb"><ul>${j.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`).join('');
+$$('.job').forEach(j=>j.querySelector('.jh').onclick=()=>{const o=!j.classList.contains('open');$$('.job').forEach(x=>{x.classList.remove('open');x.querySelector('.jh').setAttribute('aria-expanded',false)});if(o){j.classList.add('open');j.querySelector('.jh').setAttribute('aria-expanded',true)}});
+$('#skillGrid').innerHTML=Object.entries(SKILLS).map(([g,l])=>`<div><h4>${esc(g)}</h4><div class="tags">${l.map(([s,p])=>p?`<button class="tag" data-p="${p[0]}" title="Open ${esc(p.map(id=>id[0]=='#'?'Machining':PROJ.find(x=>x.id==id).t).join(', '))}">${esc(s)}</button>`:`<span class="tag">${esc(s)}</span>`).join('')}</div></div>`).join('');
+$$('button.tag').forEach(b=>b.onclick=()=>b.dataset.p[0]=='#'?$(b.dataset.p).scrollIntoView({behavior:'smooth'}):goProj(b.dataset.p));
+
+/* ---------- nav ---------- */
+const prog=$('#prog'),links=$$('nav.top a.l');
+const onScroll=()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';let cur='';for(const a of links){const s=$(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<120)cur=a.getAttribute('href')}links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===cur))};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- 2027 suit: views + FEA probe ---------- */
+const suitImg=$('#suitImg'),probe=$('#probe'),suitCap=$('#suitCap');
+const caps={a:'<b>Assembly.</b> The side linkage runs from the hip, down the outside of the thigh, to a cuff below the knee, checked against a 3D-scanned body mesh before printing.',
+ f:'<b>Hip motor mount, static displacement</b> (SolidWorks Simulation, deformation scale 1). <b>Hover over the part</b> to read the displacement at any point.'};
+suitCap.innerHTML=caps.a;
+let view='a',legend=null,ctx2=null;
+const hue=d=>{const r=d[0]/255,g=d[1]/255,b=d[2]/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),c=mx-mn;if(!c)return 0;let h=mx==r?((g-b)/c)%6:mx==g?(b-r)/c+2:(r-g)/c+4;h*=60;if(h<0)h+=360;return h>300?0:h};
+$$('#m-suit .seg button').forEach(b=>b.onclick=()=>{view=b.dataset.v;$$('#m-suit .seg button').forEach(x=>x.classList.toggle('on',x===b));
+ suitImg.src=view=='a'?'img/suit27-assembly.jpg':window.FEA_SRC;suitImg.alt=view=='a'?'2027 suit linkage assembly on a scanned leg mesh':'FEA displacement plot of the hip motor mount';suitCap.innerHTML=caps[view];probe.style.display='none'});
+suitImg.addEventListener('load',()=>{if(view!='f')return;try{const c=document.createElement('canvas');c.width=suitImg.naturalWidth;c.height=suitImg.naturalHeight;ctx2=c.getContext('2d',{willReadFrequently:true});ctx2.drawImage(suitImg,0,0);
+ legend=[];const y0=155,y1=467;for(let y=y0;y<=y1;y+=2){const d=ctx2.getImageData(883,y,1,1).data;legend.push({h:hue(d),v:1.256e-2-(y-y0)/(y1-y0)*(1.256e-2-6.503e-6)})}}catch(e){ctx2=null}});
+$('#suitView').addEventListener('pointermove',e=>{if(view!='f'||!ctx2||!legend){probe.style.display='none';return}
+ const r=suitImg.getBoundingClientRect(),sx=(e.clientX-r.left)/r.width*suitImg.naturalWidth,sy=(e.clientY-r.top)/r.height*suitImg.naturalHeight;
+ if(sx>855){probe.style.display='none';return}
+ const d=ctx2.getImageData(sx|0,sy|0,1,1).data,mx=Math.max(d[0],d[1],d[2]),mn=Math.min(d[0],d[1],d[2]);
+ if(mx<40||(mx-mn)/mx<.35){probe.style.display='none';return}
+ const h=hue(d);let best=legend[0],bd=1e9;for(const L of legend){const dd=Math.abs(L.h-h);if(dd<bd){bd=dd;best=L}}
+ probe.style.display='block';probe.style.left=(e.clientX-r.left)+'px';probe.style.top=(e.clientY-r.top)+'px';probe.textContent=`≈ ${(best.v*1000).toFixed(1)} µm displacement`});
+$('#suitView').addEventListener('pointerleave',()=>probe.style.display='none');
+
+/* ---------- bioreactor parts ---------- */
+const parts=[
+ {n:'Motor',x:53,y:9,d:'A NEMA-17 motor drives the stirrer. It is larger than the flask opening, so it sits on its own support raised above the lid.'},
+ {n:'Lid',x:53,y:21,d:'Custom 3D-printed lid with ports for filtered air in, exhaust out, and a sampling port for drawing culture during a run.'},
+ {n:'Impeller',x:58,y:30,d:'A 25 mm Rushton turbine on the motor shaft, chosen from three candidates with CFD (below).'},
+ {n:'Flask',x:46,y:35,d:'Erlenmeyer culture vessel. The CFD modelled a 500 mL flask filled with 240 mL, 38 mm deep.'},
+ {n:'Air Pump',x:22,y:31,d:'Supplies continuous filtered aeration so the culture stays sterile and aerobic.'},
+ {n:'Arduino',x:86,y:36,d:'Runs the electronics. The open frame leaves room to add sensing and automation later without a redesign.'},
+ {n:'Breadboard',x:58,y:56,d:'Prototyping board carrying the wiring between the Arduino, motor and pump.'}];
+$('#plist').innerHTML=parts.map((p,i)=>`<button data-i="${i}">${i+1} · ${p.n}</button>`).join('');
+$('#bioView').insertAdjacentHTML('beforeend',parts.map((p,i)=>`<button class="hot" data-i="${i}" style="left:${p.x}%;top:${p.y}%" aria-label="${p.n}">${i+1}</button>`).join(''));
+const showPart=i=>{$('#partT').textContent=parts[i].n;$('#partD').textContent=parts[i].d;$$('#plist button,#bioView .hot').forEach(b=>b.classList.toggle('on',+b.dataset.i===i))};
+$$('#plist button,#bioView .hot').forEach(b=>b.onclick=()=>showPart(+b.dataset.i));showPart(0);
+
+/* ---------- impellers ---------- */
+const IMP=[
+ {k:'Rushton turbine',s:'Rushton',c:'#2457d6',tc:'#fff',shape:'Flat disc with 8 upright blades',flow:'Throws liquid outward toward the wall (radial flow)',pm:14,to:1.5,pw:2.8,sh:197,mesh:'690,559',it:'3,000',
+  txt:'The strongest flow. Its outward jet drives two large loops that fill most of the flask, giving 14% poorly mixed volume and a 1.5 s turnover. About 84% of its motion was liquid spinning around the shaft, and it drew the most power and the highest peak shear.'},
+ {k:'Marine propeller',s:'Marine',c:'#5d6573',tc:'#fff',shape:'3 curved, swept blades',flow:'Pushes liquid straight down along the shaft (axial flow)',pm:31,to:2.4,pw:0.4,sh:80,mesh:'1,155,532',it:'3,000',
+  txt:'Pushed liquid down past the blades, out along the floor and up the walls. Its loops were weaker, and a slow layer formed under the surface, leaving 31% poorly mixed and a 2.4 s turnover. It drew the least power and the lowest shear.'},
+ {k:'Pitched-blade turbine',s:'Pitched-blade',c:'#a8b0bd',tc:'#1c1e23',shape:'4 flat blades tilted at 45°',flow:'Pushes liquid down and outward (mixed flow)',pm:28,to:1.8,pw:1.0,sh:110,mesh:'339,883',it:'5,000',
+  txt:'Pushed liquid down and outward into loops stronger than the marine propeller\'s, but the same slow layer formed under the surface: 28% poorly mixed, 1.8 s turnover, 1.0 mW and a peak shear of 110 1/s.'}];
+const V=(x,y,z)=>[x,y,z];
+function cyl(r,y0,y1,n){const P=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2,b=(i+1)/n*Math.PI*2;P.push([V(r*Math.cos(a),y0,r*Math.sin(a)),V(r*Math.cos(b),y0,r*Math.sin(b)),V(r*Math.cos(b),y1,r*Math.sin(b)),V(r*Math.cos(a),y1,r*Math.sin(a))])}
+ const top=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2;top.push(V(r*Math.cos(a),y1,r*Math.sin(a)))}P.push(top);P.push(top.map(p=>V(p[0],y0,p[2])).reverse());return P}
+function model(k){let P=cyl(.16,-.24,.28,16);
+ if(k==0){P=P.concat(cyl(.66,-.03,.03,28));for(let i=0;i<8;i++){const a=i/8*Math.PI*2,c=Math.cos(a),s=Math.sin(a);P.push([V(.45*c,-.2,.45*s),V(c,-.2,s),V(c,.2,s),V(.45*c,.2,.45*s)])}}
+ if(k==2){for(let i=0;i<4;i++){const a=i/4*Math.PI*2,R=[Math.cos(a),0,Math.sin(a)],T=[-Math.sin(a),0,Math.cos(a)],w=.17,q=Math.SQRT1_2;const pt=(r,t)=>V(r*R[0]+t*q*T[0],t*q,r*R[2]+t*q*T[2]);P.push([pt(.18,-w),pt(1,-w),pt(1,w),pt(.18,w)])}}
+ if(k==1){for(let i=0;i<3;i++){const a0=i/3*Math.PI*2,N=8;for(let j=0;j<N;j++){const ed=s=>{const r=.2+.8*s,c=.1+.3*Math.sin(Math.PI*(.12+.8*s)),ph=a0+s,da=c/r;return [V(r*Math.cos(ph-da),.44*c,r*Math.sin(ph-da)),V(r*Math.cos(ph+da),-.44*c,r*Math.sin(ph+da))]};const A=ed(j/N),B=ed((j+1)/N);P.push([A[0],B[0],B[1],A[1]])}}}
+ return P}
+function shade(hex,f){const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;const m=x=>Math.round(f<1?x*f:x+(255-x)*(f-1));return `rgb(${m(r)},${m(g)},${m(b)})`}
+function draw3d(cv,k,yaw){const dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;if(!W)return;if(cv.width!=W*dpr){cv.width=W*dpr;cv.height=H*dpr}
+ const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);const S=Math.min(W*.36,H*.42),tilt=.42,cy=Math.cos(yaw),sy=Math.sin(yaw),ct=Math.cos(tilt),st=Math.sin(tilt);
+ const pr=p=>{const x=p[0]*cy-p[2]*sy,z=p[0]*sy+p[2]*cy,y=p[1];return [W/2+x*S,H*.62-(y*ct-z*st)*S,y*st+z*ct]};
+ const F=model(k).map(poly=>{const q=poly.map(pr),a=q[0],b=q[1],c=q[2];const ux=b[0]-a[0],uy=b[1]-a[1],uz=b[2]-a[2],vx=c[0]-a[0],vy=c[1]-a[1],vz=c[2]-a[2];
+  const nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,l=Math.hypot(nx,ny,nz)||1;return {q,z:q.reduce((s,p)=>s+p[2],0)/q.length,f:.42+.85*Math.abs((nx*-.3+ny*-.8+nz*.5)/l)}});
+ F.sort((a,b)=>a.z-b.z);for(const f of F){g.beginPath();f.q.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fillStyle=shade(IMP[k].c,f.f);g.fill();g.strokeStyle=shade(IMP[k].c,.55);g.lineWidth=.8;g.stroke()}
+ const s0=pr(V(0,.28,0)),s1=pr(V(0,1.5,0));g.strokeStyle='#8d93a0';g.lineWidth=6;g.lineCap='round';g.beginPath();g.moveTo(s0[0],s0[1]);g.lineTo(s1[0],s1[1]);g.stroke()}
+$('#imps').innerHTML=IMP.map((m,i)=>`<div class="imp"><canvas data-k="${i}" aria-label="${m.k} 3D model, drag to rotate"></canvas><h4><i class="dot" style="background:${m.c}"></i>${m.k}</h4><dl style="margin:0"><dt>Shape</dt><dd>${m.shape}</dd><dt>Flow it creates</dt><dd>${m.flow}</dd></dl></div>`).join('');
+const cvs=$$('#imps canvas'),yaw=[.3,1.1,.7],drag=[0,0,0];
+cvs.forEach((cv,i)=>{let lx=0;cv.addEventListener('pointerdown',e=>{drag[i]=1;lx=e.clientX;cv.setPointerCapture(e.pointerId)});
+ cv.addEventListener('pointermove',e=>{if(!drag[i])return;yaw[i]+=(e.clientX-lx)*.012;lx=e.clientX});
+ cv.addEventListener('pointerup',()=>drag[i]=0);cv.addEventListener('pointercancel',()=>drag[i]=0)});
+
+/* ---------- methods ---------- */
+const M=[
+ {t:'Geometry',d:'The liquid in a 500 mL Erlenmeyer flask, filled halfway (240 mL of water, 38 mm deep), was modelled in Onshape. Each impeller sat on the flask axis with its blades centred 12.5 mm above the floor, on a 7.5 mm shaft running up through the surface.',h:['g']},
+ {t:'Simulation',d:'Steady, incompressible water flow at 300 RPM in SimScale, with k-omega SST turbulence. The spinning impeller was a multiple reference frame (MRF) zone, a 29 mm wide cylinder where flow is computed as if spinning with the blades. The surface was treated as a flat, frictionless wall so the air above did not need modelling.',h:['m','s']},
+ {t:'Mesh and run length',d:'Each geometry was meshed with extra refinement on the impeller, where flow changes fastest. The Rushton and marine runs used 0.69 and 1.16 million cells over 3,000 iterations; the pitched-blade run used 0.34 million cells and 5,000 iterations because it took longer to settle.',h:['x']},
+ {t:'Analysis',d:'Results were analysed in Python (PyVista) so the same measures could be computed for every design. In an unbaffled flask much of the motion is liquid spinning around the shaft, which carries cells in circles but not top to bottom, so mixing was judged by the up/down and in/out flow only: the mixing flow.',h:['a']}];
+$('#mtabs').innerHTML=M.map((m,i)=>`<button data-i="${i}">${i+1} · ${m.t}</button>`).join('');
+const BL='#2457d6';
+const showM=i=>{$('#mT').textContent=`${i+1}. ${M[i].t}`;$('#mD').textContent=M[i].d;$$('#mtabs button').forEach((b,j)=>b.classList.toggle('on',j==i));const on=k=>M[i].h.includes(k);
+ const mesh=on('x')?[...Array(13)].map((_,j)=>`<line x1="${60+j*25}" y1="150" x2="${60+j*25}" y2="215" stroke="#dfe3ea"/>`).join('')+[...Array(4)].map((_,j)=>`<line x1="60" y1="${150+j*22}" x2="360" y2="${150+j*22}" stroke="#dfe3ea"/>`).join('')+[...Array(9)].map((_,j)=>`<line x1="${170+j*10}" y1="160" x2="${170+j*10}" y2="205" stroke="#9aa3b2" stroke-width=".6"/>`).join(''):'';
+ const arrows=on('a')?`<path d="M150 200 C95 200 90 165 150 160 C200 157 200 195 150 200" fill="none" stroke="${BL}" stroke-width="2" marker-end="url(#ah)"/><path d="M270 200 C325 200 330 165 270 160 C220 157 220 195 270 200" fill="none" stroke="${BL}" stroke-width="2" marker-end="url(#ah)"/>`:'';
+ $('#mfig').innerHTML=`<defs><marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="${BL}"/></marker></defs>
+ <path d="M150 20 V50 L50 215 H370 L270 50 V20" fill="none" stroke="#1c1e23" stroke-width="2"/><path d="M89 150 H331 L370 215 H50Z" fill="${on('g')?'#2457d630':'#2457d618'}"/>${mesh}${arrows}
+ <line x1="89" y1="150" x2="331" y2="150" stroke="${BL}" stroke-width="${on('s')?3:1.5}" stroke-dasharray="${on('s')?'':'4 3'}"/>
+ <rect x="205" y="30" width="10" height="160" fill="#9aa3b2"/>${on('m')?`<rect x="174" y="168" width="72" height="34" rx="4" fill="#2457d622" stroke="${BL}" stroke-dasharray="5 3"/>`:''}<rect x="180" y="181" width="60" height="8" rx="2" fill="${BL}"/>
+ <text x="380" y="185">38 mm</text><line x1="375" y1="150" x2="375" y2="215" stroke="#9aa3b2"/>
+ ${on('g')?'<text x="40" y="240">500 mL flask · 240 mL water</text><text x="255" y="240">25 mm impeller, 12.5 mm up</text>':''}${on('m')?`<text x="250" y="165" style="fill:${BL}">MRF zone, 300 RPM</text>`:''}${on('s')?`<text x="95" y="143" style="fill:${BL}">Flat, frictionless surface</text>`:''}${on('x')?'<text x="40" y="240">Refined mesh around the impeller</text>':''}${on('a')?'<text x="40" y="240">Up/down and in/out flow only = mixing flow</text>':''}`};
+$$('#mtabs button').forEach(b=>b.onclick=()=>showM(+b.dataset.i));showM(0);
+
+/* ---------- flow field: live particles + click-to-dye ---------- */
+const NX=41,NZ=16,DX=2.5,DZ=3*38/46;
+const FIELDS=window.CFD_FIELD.map(s=>{const [u,w,p]=s.split('|');return {u:u.split(',').map(v=>v===''?NaN:+v*2),w:w.split(',').map(v=>v===''?NaN:+v*2),p:[...p].map(c=>c=='x'?-1:+c)}});
+let cur=0,showPM=true,paused=false,speed=.5;
+const fcv=$('#flow'),fx=fcv.getContext('2d');let FW=0,FH=0,bg=null,pts=[],dye=[];
+const X0=-52,X1=52,Z1=45;
+const toPx=(x,z)=>[(x-X0)/(X1-X0)*FW,FH-(z+2)/(Z1+2)*FH],toMM=(px,py)=>[X0+px/FW*(X1-X0),(1-py/FH)*(Z1+2)-2];
+function samp(F,x,z){const gx=(x+50)/DX,gz=z/DZ,i=Math.floor(gx),j=Math.floor(gz);if(i<0||j<0||i>=NX-1||j>=NZ-1)return null;
+ const a=gx-i,c=gz-j,ids=[j*NX+i,j*NX+i+1,(j+1)*NX+i,(j+1)*NX+i+1],wt=[(1-a)*(1-c),a*(1-c),(1-a)*c,a*c];let u=0,w=0,p=0,s=0;
+ for(let q=0;q<4;q++){const k=ids[q];if(isNaN(F.u[k]))continue;u+=F.u[k]*wt[q];w+=F.w[k]*wt[q];p+=Math.max(F.p[k],0)*wt[q];s+=wt[q]}
+ return s<.5?null:{u:u/s,w:w/s,p:p/s}}
+function render(){const dpr=Math.min(devicePixelRatio||1,2);FW=fcv.clientWidth;FH=fcv.clientHeight;if(!FW){bg=null;return}fcv.width=FW*dpr;fcv.height=FH*dpr;fx.setTransform(dpr,0,0,dpr,0,0);
+ const F=FIELDS[cur],img=fx.createImageData(FW*dpr|0,FH*dpr|0),Wd=img.width,Hd=img.height,P=new Float32Array(Wd*Hd).fill(-1);
+ for(let py=0;py<Hd;py++)for(let px=0;px<Wd;px++){const x=X0+px/Wd*(X1-X0),z=(1-py/Hd)*(Z1+2)-2,o=(py*Wd+px)*4;if(z<0||z>38)continue;
+  const v=samp(F,x,z);if(!v){if(Math.abs(x)<20){const gx=Math.round((x+50)/DX),gz=Math.min(NZ-1,Math.round(z/DZ)),k=gz*NX+gx;if(F.p[k]===-1&&gx>3&&gx<NX-4&&z>DZ){img.data[o]=196;img.data[o+1]=201;img.data[o+2]=209;img.data[o+3]=255}}continue}
+  const sp=Math.min(Math.hypot(v.u,v.w)/200,1);img.data[o]=244-215*sp;img.data[o+1]=247-168*sp;img.data[o+2]=253-44*sp;img.data[o+3]=255;P[py*Wd+px]=v.p}
+ if(showPM)for(let py=1;py<Hd-1;py++)for(let px=1;px<Wd-1;px++){const k=py*Wd+px,a=P[k];if(a<.5)continue;const o=k*4;
+  if([P[k-1],P[k+1],P[k-Wd],P[k+Wd]].some(n=>n>=0&&n<.5)){img.data[o]=210;img.data[o+1]=59;img.data[o+2]=59}else{img.data[o]=Math.min(255,img.data[o]+8);img.data[o+1]-=14;img.data[o+2]-=14}}
+ bg=document.createElement('canvas');bg.width=Wd;bg.height=Hd;bg.getContext('2d').putImageData(img,0,0);
+ pts=[];for(let i=0;i<300;i++)pts.push(spawn(Math.random()*5));dye=[]}
+function spawn(a=0){for(let t=0;t<40;t++){const x=-48+Math.random()*96,z=1+Math.random()*36;if(samp(FIELDS[cur],x,z))return {x,z,a}}return {x:0,z:30,a}}
+function step(q,dt){const v=samp(FIELDS[cur],q.x,q.z);if(!v)return null;q.x+=v.u*speed*dt;q.z+=v.w*speed*dt;return v}
+let last=performance.now();
+function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/1000);last=t;if(!bg||!fcv.isConnected||!fcv.clientWidth)return;
+ fx.clearRect(0,0,FW,FH);fx.drawImage(bg,0,0,FW,FH);fx.fillStyle='#1c1e23';fx.strokeStyle='#1c1e23';fx.lineWidth=1.1;
+ for(const q of pts){let v=samp(FIELDS[cur],q.x,q.z);if(!v||q.a>5){Object.assign(q,spawn());continue}
+  if(!paused){v=step(q,dt)||v;q.a+=dt}const [px,py]=toPx(q.x,q.z),[nx,ny]=toPx(q.x-v.u*.05*speed*2,q.z-v.w*.05*speed*2);
+  fx.globalAlpha=Math.max(0,Math.min(1,q.a*2,(5-q.a)*2))*.75;fx.beginPath();fx.moveTo(nx,ny);fx.lineTo(px,py);fx.stroke();fx.beginPath();fx.arc(px,py,1.3,0,7);fx.fill()}
+ fx.globalAlpha=1;
+ for(const d of dye){if(!paused){d.age+=dt;for(const q of d.p){if(!q.dead&&!step(q,dt))q.dead=1;if(!q.dead){q.tr.push([q.x,q.z]);if(q.tr.length>70)q.tr.shift()}}}
+  const al=Math.max(0,1-d.age/9);fx.strokeStyle=`rgba(232,93,40,${al})`;fx.lineWidth=2;
+  for(const q of d.p){fx.beginPath();q.tr.forEach(([x,z],i)=>{const [a,b]=toPx(x,z);i?fx.lineTo(a,b):fx.moveTo(a,b)});fx.stroke()}}
+ dye=dye.filter(d=>d.age<9);
+ const [l,b]=toPx(-50,0),[r]=toPx(50,0);fx.strokeStyle='#1c1e23';fx.lineWidth=2;fx.beginPath();fx.moveTo(l,b);fx.lineTo(r,b);fx.stroke()}
+requestAnimationFrame(frame);
+fcv.addEventListener('click',e=>{const rc=fcv.getBoundingClientRect(),[x,z]=toMM(e.clientX-rc.left,e.clientY-rc.top);if(!samp(FIELDS[cur],x,z))return;
+ const p=[];for(let i=0;i<14;i++){const a=i/14*Math.PI*2,q={x:x+Math.cos(a)*1.4,z:z+Math.sin(a)*1.4,tr:[]};if(samp(FIELDS[cur],q.x,q.z))p.push(q)}dye.push({p,age:0})});
+const roFlow=new ResizeObserver(render);roFlow.observe($('#flowFig'));
+$('#pmBtn').onclick=e=>{showPM=!showPM;e.currentTarget.classList.toggle('on',showPM);render()};
+$('#pauseBtn').onclick=e=>{paused=!paused;e.currentTarget.textContent=paused?'Play':'Pause';e.currentTarget.classList.toggle('on',paused)};
+$('#spd').oninput=e=>{speed=+e.target.value;$('#spdV').textContent=speed.toFixed(1)+'×'};
+
+/* impeller spin shares the same loop driver */
+const spin=()=>{requestAnimationFrame(spin);cvs.forEach((cv,i)=>{if(!cv.clientWidth)return;if(!drag[i])yaw[i]+=.006;draw3d(cv,i,yaw[i])})};requestAnimationFrame(spin);
+
+/* ---------- picker, stats, bars, table ---------- */
+$('#impPick').innerHTML=IMP.map((m,i)=>`<button data-i="${i}" role="tab"><i class="dot" style="background:${m.c}"></i>${m.k}</button>`).join('');
+const rank=(key,i)=>{const s=IMP.map(m=>m[key]).sort((a,b)=>a-b),r=s.indexOf(IMP[i][key]);return r==0?'Lowest of the three':r==2?'Highest of the three':'Middle of the three'};
+const BAR=[{k:'pm',t:'A · Poorly mixed volume',u:'%',max:35},{k:'to',t:'B · Turnover time',u:' s',max:2.6},{k:'pw',t:'C · Power drawn',u:' mW',max:3},{k:'sh',t:'D · Peak shear rate',u:'',max:210}];
+$('#bars').innerHTML=BAR.map(b=>`<div><h5>${b.t}</h5>${IMP.map((m,i)=>`<button class="bar" data-i="${i}"><span>${m.s}</span><span class="t" style="width:${m[b.k]/b.max*100}%;background:${m.c};color:${m.tc}">${m[b.k]}${b.u}</span></button>`).join('')}</div>`).join('');
+$('#sumT').innerHTML=IMP.map(m=>`<tr><td><i class="dot" style="background:${m.c}"></i> ${m.k}</td><td class="n">${m.pm}</td><td class="n">${m.to}</td><td class="n">${m.pw}</td><td class="n">${m.sh}</td><td class="n">${m.mesh}</td><td class="n">${m.it}</td></tr>`).join('');
+const pick=i=>{cur=i;const m=IMP[i];$('#rT').textContent=m.k;$('#rD').textContent=m.txt;
+ $('#rS').innerHTML=[['pm','%','Poorly mixed volume'],['to',' s','Turnover time'],['pw',' mW','Power drawn'],['sh',' 1/s','Peak shear rate']].map(([k,u,l])=>`<div class="stat"><b>${m[k]}${u}</b><small>${l}</small><small>${rank(k,i)}</small></div>`).join('');
+ $$('#impPick button').forEach((b,j)=>{b.classList.toggle('on',j==i);b.setAttribute('aria-selected',j==i)});$$('#bars .bar').forEach(b=>b.classList.toggle('dim',+b.dataset.i!==i));render()};
+$$('#impPick button').forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+$$('#bars .bar').forEach(b=>b.onclick=()=>{pick(+b.dataset.i);$('#impPick').scrollIntoView({block:'center',behavior:'smooth'})});
+pick(0);
+
+/* ---------- hero jump ---------- */
+$$('.jump button').forEach(b=>b.onclick=()=>{const t=[...$$('#filters button')].find(x=>x.dataset.f==b.dataset.j);if(t)t.click();$('#projects').scrollIntoView({behavior:'smooth'})});
+
+/* ---------- lightbox arrows ---------- */
+let lbCard=null;
+$$('.gal .gmain').forEach(m=>m.addEventListener('click',()=>{lbCard=m.closest('.pcard')}));
+addEventListener('keydown',e=>{if(!$('#lb').classList.contains('show')||!lbCard)return;if(e.key=='ArrowRight'||e.key=='ArrowLeft'){lbCard.gal.step(e.key=='ArrowRight'?1:-1);const g=lbCard.querySelector('.gmain img');$('#lbImg').src=g.src;$('#lbCap').innerHTML=lbCard.querySelector('.gcap').innerHTML}});
+
+/* ---------- suit: clickable steps ---------- */
+$$('#m-suit .steps li.click').forEach(li=>{const go=()=>{$(`#m-suit .seg button[data-v=${li.dataset.v}]`).click()};li.onclick=go;li.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();go()}}});
+$$('#m-suit .seg button').forEach(b=>b.addEventListener('click',()=>$$('#m-suit .steps li.click').forEach(li=>li.classList.toggle('sel',li.dataset.v==b.dataset.v))));
+
+/* ---------- 2026 linkage showcase ---------- */
+{
+const PS=[
+ {n:'The ACE suit',photo:'exo-ace',code:'EXO-26 · Final assembly',role:'Complete suit on a pilot',d:'The finished lower-limb exoskeleton, built for the ACE competition at McMaster to perform firefighter-like tasks: climbing stairs, carrying weight and kicking down doors.',
+  f:['AI predicts the pilot\'s next move so the suit can assist at the right moment','Assistance through electrical actuation and mechanical load distribution','Linkages custom-fit to the pilot using anatomical imaging and musculoskeletal data','Motor control system actuates the joints to assist gait'],spec:[['Competition','ACE, McMaster University'],['Parts below','4 printed linkages']]},
+ {n:'Upper thigh linkage',img:'exo26-upperthigh',role:'Hip housing → adjustable link',d:'Contours around the pilot\'s body, connecting the hip to the adjustable thigh linkage.',
+  f:['Curved profile lets straps mount on top of the pilot\'s pants, preventing a rotational moment (twisting) when the motor lifts the leg','PCB cutout built into the housing','Integrated zip-tie passthrough channels for cable routing','TPE85A padding square under the adjustment mechanism for comfort'],spec:[['Joins','Hip housing, adjustable link'],['Padding','TPE85A'],['Integration','PCB cutout, cable channels']]},
+ {n:'Adjustable thigh linkage',img:'exo26-adjustability',role:'Sets thigh length',d:'The straight link between the upper thigh and knee linkages that sets thigh length for each pilot.',
+  f:['Four evenly spaced holes for stepped length adjustment','Offset step where the bar widens into the joint end','Ribbed, forked tabs at the lower end'],spec:[['Joins','Upper thigh, upper knee'],['Adjustment','4 hole positions']]},
+ {n:'Lower thigh / upper knee linkage',img:'exo26-upperknee',role:'Thigh → knee joint',d:'Connects to the upper portion of the knee linkage, where the suit pushes hardest on the pilot.',
+  f:['TPE85A pad at a strong pressure point where the suit moves the pilot','Modified scarf and splice joint that resists bending in both directions','Trades a little strength for that dual-direction resistance, matching the bending load case'],spec:[['Joins','Adjustable link, knee joint'],['Padding','TPE85A'],['Joint','Modified scarf and splice']]},
+ {n:'Lower knee linkage',img:'exo26-lowerknee',role:'Knee joint → shin',d:'Similar to the upper knee linkage, carrying assistance below the knee to the shin.',
+  f:['Lengthened bottom extrusion to support the shin','Padding on the lower and upper shin at high-stress contact points','Joint board cutout on the outside, mirroring the upper thigh linkage'],spec:[['Joins','Knee joint, shin cuff'],['Padding','Upper and lower shin']]}];
+let pi=0;
+const chain=['Hip','Upper thigh','Adjustable','Upper knee','Lower knee'];
+const ps=i=>{pi=(i+PS.length)%PS.length;const p=PS[pi],im=$('#psImg');im.classList.remove('in');void im.offsetWidth;im.src=p.photo?`img/${p.photo}.jpg`:`img/${p.img}.webp`;im.alt=p.n;im.classList.add('in');$('#psStage').classList.toggle('photo',!!p.photo);$('#psStage').style.setProperty('--ph',p.photo?`url(img/${p.photo}.jpg)`:'none');
+ $('#psCode').textContent=p.code||`EXO-26 · ${String(pi).padStart(2,'0')} / 04`;$('#psName').textContent=p.n;$('#psRole').textContent=p.role;$('#psDesc').textContent=p.d;
+ $('#psFeat').innerHTML=p.f.map(x=>`<li>${esc(x)}</li>`).join('');$('#psSpec').innerHTML=p.spec.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+ $('#psChain').innerHTML=chain.map((c,j)=>`<span class="${p.photo?(j?'on':'hip'):j==pi?'on':j==0?'hip':''}">${c}</span>`).join('<i></i>');
+ $$('#psLine button').forEach((b,j)=>b.classList.toggle('on',j==pi))};
+$('#psLine').innerHTML=PS.map((p,i)=>`<button data-i="${i}" class="${p.photo?'ph':''}"><img src="img/${p.photo?p.photo+'.jpg':p.img+'.webp'}" alt=""><span><b>${p.photo?'Final':String(i).padStart(2,'0')}</b> ${p.n}</span></button>`).join('');
+$$('#psLine button').forEach(b=>b.onclick=()=>ps(+b.dataset.i));
+$('#psPrev').onclick=e=>{e.stopPropagation();ps(pi-1)};$('#psNext').onclick=e=>{e.stopPropagation();ps(pi+1)};
+const st=$('#psStage');
+st.addEventListener('keydown',e=>{if(e.key=='ArrowRight')ps(pi+1);if(e.key=='ArrowLeft')ps(pi-1)});
+$$('.psctx button').forEach(b=>b.onclick=()=>{$('#lbImg').src=b.dataset.src;$('#lbCap').innerHTML=b.dataset.cap;$('#lb').classList.add('show')});
+window.exShow=ps;ps(0);
+}
+
+/* ---------- exoskeleton gait + load explorer ---------- */
+{
+const cr=(K,t)=>{t=((t%100)+100)%100;const n=K.length;let i=0;while(i<n-2&&K[i+1][0]<=t)i++;
+ const p0=i?K[i-1]:K[n-2],p1=K[i],p2=K[i+1],p3=i+2<n?K[i+2]:K[1],u=(t-p1[0])/(p2[0]-p1[0]);
+ const a=p0[1],b=p1[1],c=p2[1],d=p3[1];return .5*((2*b)+(-a+c)*u+(2*a-5*b+4*c-d)*u*u+(-a+3*b-3*c+d)*u*u*u)};
+/* normative sagittal kinematics (deg) and moments (Nm/kg), shaped after Winter (2009) */
+const HIP=[[0,30],[10,26],[20,17],[30,7],[40,-3],[50,-9],[58,-8],[65,2],[75,18],[85,28],[92,31],[100,30]];
+const KNEE=[[0,4],[8,15],[15,19],[25,12],[35,6],[42,5],[50,12],[58,30],[65,48],[72,60],[78,58],[86,35],[94,10],[100,4]];
+const ANK=[[0,0],[6,-6],[12,-2],[25,5],[40,10],[48,8],[56,-6],[62,-18],[68,-10],[76,-1],[88,2],[100,0]];
+const MH=[[0,.25],[5,.6],[9,.75],[16,.5],[25,.1],[35,-.3],[45,-.6],[52,-.72],[60,-.45],[70,-.1],[80,0],[90,.2],[100,.25]];
+const MK=[[0,-.1],[5,.3],[10,.62],[16,.5],[28,.1],[38,-.2],[46,-.15],[55,.1],[62,.05],[75,-.05],[88,-.22],[95,-.25],[100,-.1]];
+const MA=[[0,0],[8,.05],[20,.4],[35,.9],[45,1.35],[50,1.45],[56,.9],[61,.15],[64,0],[80,0],[100,0]];
+const PARTS=[
+ {n:'Upper thigh linkage',c:'#1c1e23',g:1,f:(h,k,a)=>.85*h+.15*k,why:'It carries the hip moment straight from the hip motor: high as the hip extensors catch body weight in loading response, and again in pre-swing as the hip flexes to pull the leg forward, the moment the motor lifts the leg.'},
+ {n:'Adjustable thigh linkage',c:'#2457d6',g:2,f:(h,k,a)=>.45*h+.55*k,why:'Sitting mid-thigh, it sees a blend of hip and knee load, so it peaks when both are high together in early stance.'},
+ {n:'Lower thigh / upper knee',c:'#e08a1e',g:3,f:(h,k,a)=>.15*h+.85*k,why:'Dominated by the knee moment: it peaks in loading response, when the knee extensors resist the knee buckling under body weight. This is why the scarf-and-splice joint must resist bending.'},
+ {n:'Lower knee linkage',c:'#16a37b',g:5,f:(h,k,a)=>.65*k+.25*a,why:'Loaded by the knee in early stance and again in terminal stance as the calf pushes off and the shin presses into the cuff padding.'}];
+const N=200,TT=[...Array(N)].map((_,i)=>i*100/N);
+const RAW=PARTS.map(p=>TT.map(t=>p.f(Math.abs(cr(MH,t)),Math.abs(cr(MK,t)),Math.max(0,cr(MA,t)))));
+const G=Math.max(...RAW.flat());const S=RAW.map(r=>r.map(v=>v/G));
+const PEAK=S.map(r=>{let m=0;r.forEach((v,i)=>{if(v>r[m])m=i});return TT[m]});
+const stressAt=(i,t)=>{const x=((t%100)+100)%100/100*N,j=Math.floor(x)%N,f=x-Math.floor(x);return S[i][j]*(1-f)+S[i][(j+1)%N]*f};
+const PH=[[0,2,'Initial contact','IC'],[2,12,'Loading response','LR'],[12,31,'Mid stance','MSt'],[31,50,'Terminal stance','TSt'],[50,62,'Pre-swing','PSw'],[62,75,'Initial swing','ISw'],[75,87,'Mid swing','MSw'],[87,100,'Terminal swing','TSw']];
+const phase=t=>PH.find(p=>t>=p[0]&&t<p[1])||PH[0];
+const STOPS=[[0,[36,87,214]],[.3,[34,184,207]],[.55,[67,196,99]],[.78,[245,195,59]],[1,[229,72,77]]];
+const cmap=v=>{v=Math.max(0,Math.min(1,v));let i=0;while(i<STOPS.length-2&&v>STOPS[i+1][0])i++;const [a,ca]=STOPS[i],[b,cb]=STOPS[i+1],f=(v-a)/(b-a);return `rgb(${ca.map((c,k)=>Math.round(c+(cb[k]-c)*f)).join(',')})`};
+
+let T=0,play=true,spd=1,sel=0,tick=0,lastStance=null,lastX=null;
+const sv=$('#exSvg'),ch=$('#exChart'),GROUND=412,R=Math.PI/180;
+$('#exParts').innerHTML=PARTS.map((p,i)=>`<button data-i="${i}"><i class="sw" style="background:${p.c}"></i><span>${p.n}</span><i class="mt"><b></b></i></button>`).join('');
+const leg=(t,hole)=>{const L=118+hole*9,Sh=140,F=50,at=cr(HIP,t)*R,as=(cr(HIP,t)-cr(KNEE,t))*R,d=cr(ANK,t)*R;
+ const K=[Math.sin(at)*L,Math.cos(at)*L],A=[K[0]+Math.sin(as)*Sh,K[1]+Math.cos(as)*Sh],fd=[Math.cos(as+d),-Math.sin(as+d)];
+ return {L,K,A,at,as,heel:[A[0]-fd[0]*F*.28,A[1]-fd[1]*F*.28],toe:[A[0]+fd[0]*F*.72,A[1]+fd[1]*F*.72]}};
+const P2=p=>`${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+function drawLeg(){const hole=+$('#exHole').value,near=leg(T,hole),far=leg(T+50,hole);
+ const low=l=>Math.max(l.heel[1],l.toe[1],l.A[1]),hy=GROUND-4-Math.max(low(near),low(far)),hx=165;
+ const st=low(near)>=low(far)?'n':'f',sl=st=='n'?near:far,sx=(sl.heel[1]>sl.toe[1]?sl.heel:sl.toe)[0];
+ if(lastStance===st&&lastX!=null)tick=(tick+(sx-lastX))%40;lastStance=st;lastX=sx;
+ const o=p=>[hx+p[0],hy+p[1]],H=[hx,hy];
+ const along=(a,b,f)=>[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
+ const K=o(near.K),A=o(near.A),t1=along(H,K,.42),t2=along(H,K,.72),k2=along(K,A,.75);
+ const segs=[[H,t1],[t1,t2],[t2,K],[K,k2]];
+ const lg=(l,col,w)=>`<polyline points="${P2([hx,hy])} ${P2(o(l.K))} ${P2(o(l.A))}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${P2(o(l.heel))} ${P2(o(l.A))} ${P2(o(l.toe))}" fill="${col}" stroke="${col}" stroke-width="${w*.45}" stroke-linejoin="round" stroke-linecap="round"/>`;
+ let ticks='';for(let x=-40+((tick%40)+40)%40;x<380;x+=40)ticks+=`<line x1="${x}" y1="${GROUND+2}" x2="${x-10}" y2="${GROUND+14}" stroke="#c9ced8" stroke-width="2"/>`;
+ const holes=[1,2,3,4].map(h=>{const p=along(t1,t2,h/5);return `<circle cx="${p[0]}" cy="${p[1]}" r="${h==hole?4:2.6}" fill="${h==hole?'#fff':'#ffffffaa'}" stroke="${h==hole?'#1c1e23':'none'}" stroke-width="1.5"/>`}).join('');
+ const hS=Math.abs(cr(MH,T))/G,kS=Math.abs(cr(MK,T))/G;
+ sv.innerHTML=`<rect x="0" y="${GROUND}" width="360" height="28" fill="#eef0f3"/><line x1="0" y1="${GROUND}" x2="360" y2="${GROUND}" stroke="#9aa3b2" stroke-width="2"/>${ticks}
+ ${lg(far,'#e6e8ec',30)}
+ <line x1="${hx}" y1="${hy}" x2="${hx-6}" y2="${hy-92}" stroke="#d7dbe2" stroke-width="50" stroke-linecap="round"/>
+ ${lg(near,'#d3d8e0',34)}
+ ${segs.map(([a,b],i)=>`<g class="seg2" data-i="${i}">${i==sel?`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#1c1e23" stroke-width="20" stroke-linecap="round"/>`:''}<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${cmap(stressAt(i,T))}" stroke-width="14" stroke-linecap="round"/><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="transparent" stroke-width="30"/></g>`).join('')}
+ ${holes}
+ <circle cx="${hx}" cy="${hy}" r="14" fill="${cmap(hS)}" stroke="#1c1e23" stroke-width="3"/><circle cx="${hx}" cy="${hy}" r="4" fill="#fff"/>
+ <circle cx="${K[0]}" cy="${K[1]}" r="10" fill="${cmap(kS)}" stroke="#1c1e23" stroke-width="3"/>
+ <text x="${hx+22}" y="${hy-12}" font-size="12" fill="#646a76">Hip motor</text><text x="${K[0]+16}" y="${K[1]+4}" font-size="12" fill="#646a76">Knee</text>
+ <text x="8" y="${GROUND+24}" font-size="11" fill="#8a919c">treadmill →</text>`;
+ $$('#exSvg .seg2').forEach(g=>g.onclick=()=>selPart(+g.dataset.i))}
+function drawChart(){const X=t=>50+t/100*830,Y=v=>192-v*160;let h='';
+ h+=`<rect x="${X(0)}" y="28" width="${X(60)-X(0)}" height="166" fill="#f2f5fc"/><text x="${X(30)}" y="20" text-anchor="middle" font-size="13" fill="#646a76">Stance</text><text x="${X(80)}" y="20" text-anchor="middle" font-size="12" fill="#646a76">Swing</text>`;
+ PH.forEach(p=>{h+=`<line x1="${X(p[0])}" y1="28" x2="${X(p[0])}" y2="194" stroke="#e3e6eb"/>`;const ab=p[3];h+=`<text x="${X((p[0]+p[1])/2)}" y="212" text-anchor="middle" font-size="12" fill="#9097a3">${ab}</text>`});
+ [0,25,50,75,100].forEach(v=>h+=`<text x="${X(v)}" y="240" text-anchor="middle" font-size="12" fill="#9097a3">${v}%</text>`);
+ h+=`<line x1="50" y1="194" x2="880" y2="194" stroke="#9aa3b2"/><text x="44" y="36" text-anchor="end" font-size="12" fill="#9097a3">peak</text><text x="44" y="196" text-anchor="end" font-size="12" fill="#9097a3">0</text>`;
+ S.forEach((r,i)=>{const pts=r.map((v,j)=>`${X(TT[j]).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')+` ${X(100)},${Y(r[0]).toFixed(1)}`;h+=`<polyline points="${pts}" fill="none" stroke="${PARTS[i].c}" stroke-width="${i==sel?3.2:1.6}" opacity="${i==sel?1:.35}"/>`});
+ const pk=PEAK[sel],pv=stressAt(sel,pk);h+=`<circle cx="${X(pk)}" cy="${Y(pv)}" r="5" fill="#fff" stroke="${PARTS[sel].c}" stroke-width="2.5"/><text x="${Math.min(X(pk)+8,800)}" y="${Y(pv)-8}" font-size="13" font-weight="700" fill="${PARTS[sel].c}">peak · ${pk.toFixed(0)}%</text>`;
+ h+=`<line id="cur" x1="${X(T)}" y1="28" x2="${X(T)}" y2="194" stroke="#1c1e23" stroke-width="1.5"/>`+S.map((r,i)=>`<circle class="cd" data-i="${i}" cx="${X(T)}" cy="${Y(stressAt(i,T))}" r="${i==sel?5:3.5}" fill="${PARTS[i].c}"/>`).join('');
+ h+=`<rect id="hit" x="50" y="28" width="830" height="200" fill="transparent" style="cursor:ew-resize"/>`;ch.innerHTML=h;
+ const hit=$('#hit');const scrub=e=>{const r=ch.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*900;T=Math.max(0,Math.min(99.5,(x-50)/830*100));setPlay(false);update(true)};
+ hit.onpointerdown=e=>{hit.setPointerCapture(e.pointerId);scrub(e);hit.onpointermove=scrub};hit.onpointerup=()=>hit.onpointermove=null}
+function moveCursor(){const X=t=>50+t/100*830,Y=v=>192-v*160,c=$('#cur');if(!c)return;c.setAttribute('x1',X(T));c.setAttribute('x2',X(T));$$('#exChart .cd').forEach(d=>{d.setAttribute('cx',X(T));d.setAttribute('cy',Y(stressAt(+d.dataset.i,T)))})}
+function update(full){const p=phase(T);$('#exPhase').textContent=p[2];$('#exPct').textContent=`${T.toFixed(0)}% of cycle`;$('#exStage').textContent=T<60?'Stance':'Swing';$('#exStage').classList.toggle('sw2',T>=60);
+ $('#exT').value=T;$('#exTV').textContent=T.toFixed(0)+'%';$('#exHoleV').textContent='hole '+$('#exHole').value;
+ $$('#exParts button').forEach((b,i)=>{const v=stressAt(i,T);b.querySelector('.mt b').style.width=(v*100).toFixed(0)+'%';b.querySelector('.mt b').style.background=cmap(v);b.classList.toggle('on',i==sel)});
+ const pv=stressAt(sel,T);$('#exInfo').innerHTML=`<b>${PARTS[sel].n}: ${Math.round(pv/Math.max(...S[sel])*100)}% of its peak now.</b> Peaks at ${PEAK[sel].toFixed(0)}% of the cycle (${phase(PEAK[sel])[2].toLowerCase()}). ${PARTS[sel].why}`;
+ drawLeg();if(full)drawChart();else moveCursor()}
+const selPart=(i,sync=true)=>{sel=i;const c=$('#p-exo');if(sync&&window.exShow)exShow(i+1);update(true)};
+const setPlay=v=>{play=v;$('#exGait').textContent=play?'❚❚ Pause':'▶ Play';$('#exGait').classList.toggle('on',play)};
+$$('#exParts button').forEach(b=>b.onclick=()=>selPart(+b.dataset.i));
+$('#exGait').onclick=()=>setPlay(!play);
+$('#exT').oninput=e=>{T=+e.target.value;setPlay(false);update(false)};
+$('#exHole').oninput=()=>update(false);
+$$('#exSpd button').forEach(b=>b.onclick=()=>{spd=+b.dataset.s;$$('#exSpd button').forEach(x=>x.classList.toggle('on',x===b))});
+let gl=performance.now();
+const loop=t=>{requestAnimationFrame(loop);const dt=Math.min(.05,(t-gl)/1000);gl=t;if(!play||!sv.clientWidth)return;T=(T+dt*100/2.3*spd)%100;update(false)};
+requestAnimationFrame(loop);
+selPart(0,false);
+}
+
+/* ---------- machining lab ---------- */
+{
+const MC=[
+ {k:'Drill press',date:'October 21, 2026',img:'m1',cap:'Plate with three precision holes',
+  rows:[['Length',3.0,'±0.05',2.95,3.05,3.06],['Hole 1 diameter',0.250,'+0.001 / −0.000',0.249,0.251,0.2503],['Hole 2 diameter',0.250,'+0.001 / −0.000',0.249,0.251,0.251],['Hole 3 diameter',0.250,'+0.001 / −0.000',0.249,0.251,0.2507],['Edge to hole 2',1.5,'±0.05',1.45,1.55,1.56],['Hole 1 to hole 2',1.125,'±0.0005',1.1245,1.1255,1.1260],['Hole 2 to hole 3',1.125,'±0.0005',1.1245,1.1255,1.1249],['Edge to hole',0.5,'±0.01',0.49,0.51,0.48]],note:''},
+ {k:'Lathe',date:'October 28, 2026',img:'m2',cap:'Stepped turned part with a countersunk through-hole',
+  rows:[['Base diameter',0.500,'+0.000 / −0.002',0.498,0.500,0.499],['Base height',0.250,'±0.005',0.245,0.250,0.248],['Middle diameter',1.000,'±0.002',0.998,1.002,0.996],['Middle height',1.00,'±0.05',0.95,1.05,1.06],['Top diameter',1.40,'±0.05',1.35,1.45,1.43],['Top height',1.38,'±0.05',1.33,1.43,1.40],['Hole diameter (9/32)',0.28125,'±0.01',0.27125,0.29125,null],['Countersink diameter (13/32)',0.40625,'±0.01',0.39625,0.41625,null],['Countersink depth (9/32)',0.28125,'±0.01',0.27125,0.29125,null]],
+  note:'"Base" is the face with the smaller diameter, defined as the datum in the procedure.'},
+ {k:'Milling machine',date:'November 10, 2026',img:'m3',cap:'Block with a milled inlet slot and bored hole',
+  rows:[['Length',2.0,'±0.05',1.95,2.05,2.0020],['Length to inlet',0.50,'±0.010',0.49,0.51,0.498],['Inlet length',1.000,'±0.002',0.998,1.002,0.9995],['Width',1.50,'±0.010',1.49,1.51,1.515],['Height',0.63,'±0.010',0.62,0.64,0.6450],['Inlet height',0.38,'±0.010',0.37,0.39,0.3902],['X position of hole (from inlet edge)',0.500,'±0.002',0.498,0.502,null],['Y position of hole',0.75,'±0.010',0.74,0.76,null],['Hole diameter',0.500,'+0.001 / −0.000',0.500,0.501,null]],note:''}];
+let mi=0,ri=0,unit='in';
+const CARDS=[['Drill press','M1 · Drilled plate',['Layout with marking dye and scribed centre lines','Drilling three Ø0.250″ holes to +0.001 / −0.000″','Holding hole-to-hole spacing to ±0.0005″','Measuring features to 0.0001″'],'All three holes within 0.0007″ of Ø0.250″; holes 2 to 3 spaced 1.1249″ against 1.125″.'],
+ ['Lathe','M2 · Stepped turned part',['Facing and turning stepped diameters','Working every height from a datum face','Turning a Ø0.500″ shoulder to +0.000 / −0.002″','Planning a drilled through-hole and countersink'],'Ø0.499″ base on a +0.000 / −0.002″ callout, and a 0.248″ base height on 0.250″.'],
+ ['Milling machine','M3 · Slotted block',['Squaring stock to length, width and height','Milling an inlet slot to ±0.002″','Locating a hole position from a reference edge','Measuring features to 0.0001″'],'Inlet length 0.9995″ on a 1.000″ ±0.002″ callout; overall length 2.0020″ on 2.0″.']];
+$('#mfgCards').innerHTML=CARDS.map((c,i)=>`<button class="mfgcard" data-i="${i}"><span class="mfgimg"><img src="img/mach-m${i+1}-a.webp" alt=""></span><span class="eyebrow" style="margin:0">${c[1]}</span><h3>${c[0]}</h3><ul>${c[2].map(x=>`<li>${x}</li>`).join('')}</ul><p><b>Result:</b> ${c[3]}</p><span class="more" style="display:block">See drawing vs. part →</span></button>`).join('');
+$$('.mfgcard').forEach(b=>b.onclick=()=>{mi=+b.dataset.i;ri=0;show();$('#mcTabs').scrollIntoView({behavior:'smooth',block:'start'})});
+$('#mfgHl').innerHTML=[['3','machines: drill press, lathe, mill'],['20','dimensions measured against drawings'],['±0.0005″','tightest tolerance worked to'],['0.0001″','closest result to nominal (hole spacing)']].map(([b,t])=>`<div><b>${b}</b><span>${t}</span></div>`).join('');
+const cv=v=>unit=='mm'?v*25.4:v,dp=(v,base)=>unit=='mm'?cv(v).toFixed(3):v.toFixed(Math.min(5,Math.max(3,(String(base).split('.')[1]||'').length)));
+const U=()=>unit=='mm'?' mm':'″';
+const st=r=>r[5]==null?'nc':(r[5]>=r[3]-1e-9&&r[5]<=r[4]+1e-9?'ok':'out');
+const gauge=r=>{const [n,nom,tol,lo,hi,m]=r,w=hi-lo,a=Math.min(lo,m??lo)-w*.7,b=Math.max(hi,m??hi)+w*.7,P=v=>((v-a)/(b-a)*100).toFixed(2);
+ return `<div class="gz"><i class="band" style="left:${P(lo)}%;width:${(P(hi)-P(lo)).toFixed(2)}%"></i><i class="nom" style="left:${P(nom)}%"></i>${m==null?'':`<i class="dot ${st(r)=='ok'?'in':'off'}" style="left:${P(m)}%"></i>`}</div>`};
+const dev=r=>{if(r[5]==null)return 'Planned feature, not machined in the lab session.';const d=cv(r[5]-r[1]),u=unit=='mm'?' mm':'″';return `${d>=0?'+':'−'}${Math.abs(d).toFixed(4)}${u} from the drawing target.`};
+function detail(){const r=MC[mi].rows[ri],s=st(r);
+ $('#mcDet').innerHTML=`<div class="eyebrow" style="margin-bottom:2px">Dimension ${ri+1} on the drawing</div><h4 style="margin-bottom:8px">${esc(r[0])}</h4>
+ <dl class="psspec" style="border:0;padding:0"><dt>Nominal</dt><dd>${dp(r[1],r[1])}${U()}</dd><dt>Tolerance</dt><dd>${esc(r[2])}${unit=='mm'?' in':''}</dd><dt>Acceptable</dt><dd>${dp(r[3],r[3])} to ${dp(r[4],r[4])}${U()}</dd><dt>Measured</dt><dd>${r[5]==null?'n/a':dp(r[5],r[3])+U()}</dd></dl>
+ <p class="mcres">${dev(r)}</p>`;
+ $$('#mcRows button').forEach((b,j)=>b.classList.toggle('on',j==ri))}
+function show(){const M=MC[mi],R=M.rows;
+ $$('#mcTabs button').forEach((b,j)=>b.classList.toggle('on',j==mi));
+ const ph=[`mach-${M.img}-a`,`mach-${M.img}-b`];$('#mcImg').src=`img/${ph[0]}.webp`;$('#mcImg').alt=`${M.k} part`;
+ $('#mcThumbs').innerHTML=ph.map((p,j)=>`<button class="${j?'':'on'}" data-p="${p}"><img src="img/${p}.webp" alt="View ${j+1}"></button>`).join('');
+ $$('#mcThumbs button').forEach(b=>b.onclick=()=>{$('#mcImg').src=`img/${b.dataset.p}.webp`;$$('#mcThumbs button').forEach(x=>x.classList.toggle('on',x===b))});
+ $('#mcDwg').src=`img/mach-${M.img}-dwg.jpg`;$('#mcDwg').alt=`${M.k} technical drawing`;$('#mcDwgCap').innerHTML=`<b>Technical drawing.</b> ${M.cap}; numbered dimensions match the rows beside it. Machined ${M.date}.`;$$('.mfgcard').forEach((c,j)=>c.classList.toggle('on',j==mi));
+ const meas=R.filter(r=>r[5]!=null),tight=R.reduce((a,r)=>(r[4]-r[3])<(a[4]-a[3])?r:a),close=meas.reduce((a,r)=>Math.abs(r[5]-r[1])<Math.abs(a[5]-a[1])?r:a);
+ $('#mcSum').innerHTML=`<div><b>${meas.length}</b><span>dimensions measured</span></div><div><b>${esc(tight[2])}</b><span>tightest callout: ${esc(tight[0].toLowerCase())}</span></div><div><b>${dp(Math.abs(close[5]-close[1]),close[3])}${U()}</b><span>closest to target: ${esc(close[0].toLowerCase())}</span></div>`;
+ $('#mcRows').innerHTML=R.map((r,j)=>`<button data-i="${j}"><span class="n">${j+1}</span><span class="t">${esc(r[0])}</span>${gauge(r)}<span class="v ${r[5]==null?'nc':''}">${r[5]==null?'—':dp(r[5],r[3])}</span></button>`).join('');
+ $$('#mcRows button').forEach(b=>b.onclick=()=>{ri=+b.dataset.i;detail()});
+ const nc=R.length-meas.length;$('#mcNote').textContent=M.note+(nc?(M.note?' ':'')+'Rows marked — are features planned on the drawing that were not machined in the lab session.':'');
+ ri=Math.min(ri,R.length-1);detail()}
+$$('#mcTabs button').forEach(b=>b.onclick=()=>{mi=+b.dataset.i;ri=0;show()});
+$$('#mcUnit button').forEach(b=>b.onclick=()=>{unit=b.dataset.u;$$('#mcUnit button').forEach(x=>x.classList.toggle('on',x===b));show()});
+$('#manufacturing').addEventListener('click',e=>{const im=e.target.closest('.mcdwg img,#mcImg');if(im){$('#lbImg').src=im.src;$('#lbCap').innerHTML=im.alt;$('#lb').classList.add('show')}});
+show();
+}
+
+/* ---------- REACT hardware (iGEM 2025) ---------- */
+{
+const lbOpen=(src,cap)=>{$('#lbImg').src=src;$('#lbCap').innerHTML=cap||'';$('#lb').classList.add('show')};
+$('#m-react').addEventListener('click',e=>{const im=e.target.closest('.fz img,.phone img');if(im){const f=im.closest('figure');lbOpen(im.src,f?f.querySelector('figcaption')?.innerHTML:'')}});
+
+/* biomarker channels */
+const BM={all:'Three parallel channel pairs run from the central loading zone, one per biomarker, so all three RCA reactions happen at once from a single sample.',
+ CXCL9:'Channel for CXCL9: its Zone 1 holds rGO with a CXCL9-specific DNA aptaprimer, and its own Zone 2 well gives the colour readout.',
+ NGAL:'Channel for NGAL: its Zone 1 holds rGO with an NGAL-specific DNA aptaprimer, read from its own Zone 2 well.',
+ Creatinine:'Channel for creatinine, read alongside the others. In future, creatinine could normalize CXCL9 and NGAL for how dilute the urine is.'};
+$$('#bmk button').forEach(b=>b.onclick=()=>{$$('#bmk button').forEach(x=>x.classList.toggle('on',x===b));$('#bmkInfo').textContent=BM[b.dataset.b]});$('#bmkInfo').textContent=BM.all;
+
+/* interactive sensor walkthrough */
+const W={dx:70,lidL:false,lidR:false,sample:0,bridge:0,rca:0,color:0,photo:false,anim:null};
+const WS=[
+ {t:'Open both lids',time:'',act:'Click each lid to flip it open.',why:'Each half has its own polycarbonate lid, hinged to rotate up to 160°, that seals the paper against contamination and evaporation.',done:()=>W.lidL&&W.lidR},
+ {t:'Add the urine sample',time:'30 min',act:'Click the loading zone in the centre of the left half.',why:'The sample wicks into all three channels and reaches Zone 1, where each biomarker binds its DNA aptaprimer and displaces it from the reduced graphene oxide. The halves stay apart so the sample incubates long enough.',done:()=>W.sample>=1},
+ {t:'Slide the halves together',time:'1 min',act:'Drag the right half left along the rail until it clicks into place.',why:'The upper slider has one degree of freedom on linear guide rails with an H7/g6 fit. Closing it presses the two paper pads together so the released aptaprimer flows into Zone 2.',done:()=>W.dx<=0&&W.bridge>=1},
+ {t:'Let RCA run',time:'1 h',act:'Click the Zone 2 wells to start amplification.',why:'The circular DNA template binds the aptaprimer and rolling circle amplification builds G-quadruplex/hemin DNAzymes in each well.',done:()=>W.rca>=1},
+ {t:'Add colour reagents',time:'10 min',act:'Click the reagent tube to add H₂O₂, ABTS and TMB to Zone 2.',why:'The DNAzyme turns the reagents teal-blue. The more biomarker, the darker the well. This also stops RCA.',done:()=>W.color>=1},
+ {t:'Take one photo',time:'',act:'Click the camera to scan the sensor with SnapREACT.',why:'One photo reads all three wells. The four reference patches let the app correct for lighting and camera differences.',done:()=>W.photo}];
+const cur=()=>{const i=WS.findIndex(s=>!s.done());return i<0?WS.length:i};
+const lerp=(a,b,t)=>a+(b-a)*t,mix=(c1,c2,t)=>`rgb(${c1.map((v,i)=>Math.round(lerp(v,c2[i],t))).join(',')})`;
+const WELLV=[.85,.45,.65],YL=[242,201,76],AMB=[214,150,40],BL0=[210,226,250],TEAL=[18,120,140];
+function wDraw(){const s=cur(),dx=W.dx,on=i=>s===i;
+ const ring=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#2457d6" stroke-width="2.5" class="wring"/>`;
+ const ys=[95,160,225];
+ let g=`<defs><pattern id="rail" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10L10 0" stroke="#c4c9d2" stroke-width="1"/></pattern></defs>
+ <rect x="18" y="38" width="664" height="250" rx="10" fill="#e4e7ec" stroke="#c4c9d2"/><rect x="18" y="148" width="664" height="24" fill="url(#rail)" opacity=".6"/>
+ <text x="26" y="306" font-size="12" fill="#646a76">PLA base with linear guide rails</text>`;
+ /* left half */
+ g+=`<rect x="40" y="50" width="262" height="226" rx="6" fill="#cfd4dc" stroke="#9aa3b2"/><rect x="58" y="64" width="244" height="198" fill="#fff" stroke="#d6dae1"/>`;
+ ys.forEach((y,i)=>{const fl=Math.min(1,W.sample);g+=`<path d="M110 160 L180 ${y} L302 ${y}" fill="none" stroke="#eef0f3" stroke-width="9" stroke-linecap="round"/>`;
+  if(W.sample>0)g+=`<path d="M110 160 L180 ${y} L302 ${y}" fill="none" stroke="#f4d37a" stroke-width="9" stroke-linecap="round" pathLength="1" stroke-dasharray="${fl} 1"/>`;
+  g+=`<circle cx="230" cy="${y}" r="17" fill="${mix(YL,AMB,Math.min(1,W.sample))}" stroke="#c9a23a"/><text x="230" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#5b4510">1</text>`});
+ g+=`<circle id="wLoad" cx="110" cy="160" r="22" fill="${W.sample>0?'#f4d37a':'#fff6d6'}" stroke="#c9a23a" stroke-width="2" style="cursor:pointer"/><text x="110" y="196" text-anchor="middle" font-size="11" fill="#646a76">loading zone</text>`;
+ if(on(1))g+=ring(110,160,28);
+ /* right half (slides) */
+ g+=`<g id="wRight" transform="translate(${dx} 0)" style="cursor:${s>=2&&s<=2||dx>0?'grab':'default'}">
+  <rect x="304" y="50" width="296" height="226" rx="6" fill="#cfd4dc" stroke="#9aa3b2"/><rect x="304" y="64" width="250" height="198" fill="#fff" stroke="#d6dae1"/>`;
+ ys.forEach((y,i)=>{const b=Math.min(1,W.bridge);g+=`<line x1="304" y1="${y}" x2="400" y2="${y}" stroke="#eef0f3" stroke-width="9"/>`;
+  if(b>0)g+=`<line x1="304" y1="${y}" x2="${304+96*b}" y2="${y}" stroke="#f4d37a" stroke-width="9"/>`;
+  const base=mix(BL0,[150,190,240],Math.min(1,W.rca)),fin=W.color>0?mix([150,190,240],TEAL,Math.min(1,W.color)*WELLV[i]):base;
+  g+=`<circle class="wWell" cx="420" cy="${y}" r="20" fill="${fin}" stroke="#7a9bd6"/><text x="420" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#1b3a7a">2</text><text x="452" y="${y+4}" font-size="11" fill="#646a76">${['CXCL9','NGAL','Creatinine'][i]}</text>`;
+  if(on(3))g+=ring(420,y,26)});
+ [0,1,2,3].forEach(i=>g+=`<rect x="568" y="${76+i*44}" width="22" height="22" rx="2" fill="${mix([225,235,252],TEAL,.15+i*.25)}" stroke="#9aa3b2"/>`);
+ g+=`<text x="579" y="268" text-anchor="middle" font-size="10" fill="#646a76">patches</text>
+  <rect x="584" y="148" width="14" height="24" rx="3" fill="#9aa3b2"/><text x="452" y="290" text-anchor="middle" font-size="11" fill="#646a76">${dx>2?'⟵ drag to slide':'locked'}</text>`;
+ /* right lid */
+ g+=W.lidR?`<rect class="wLidR" x="304" y="16" width="296" height="26" rx="5" fill="#b9c8e6" stroke="#7a8fb8" style="cursor:pointer"/><text x="452" y="33" text-anchor="middle" font-size="11" fill="#1c1e23" pointer-events="none">lid open</text>`
+  :`<rect class="wLidR" x="304" y="50" width="296" height="226" rx="6" fill="#a9bde3" fill-opacity=".72" stroke="#5f79b0" style="cursor:pointer"/><text x="452" y="168" text-anchor="middle" font-size="13" fill="#1c1e23" pointer-events="none">lid closed · click to open</text>`;
+ if(on(0)&&!W.lidR)g+=`<rect x="300" y="46" width="304" height="234" rx="8" fill="none" stroke="#2457d6" stroke-width="2.5" class="wring"/>`;
+ g+=`</g>`;
+ /* left lid */
+ g+=W.lidL?`<rect class="wLidL" x="40" y="16" width="262" height="26" rx="5" fill="#b9c8e6" stroke="#7a8fb8" style="cursor:pointer"/><text x="171" y="33" text-anchor="middle" font-size="11" fill="#1c1e23" pointer-events="none">lid open</text>`
+  :`<rect class="wLidL" x="40" y="50" width="262" height="226" rx="6" fill="#a9bde3" fill-opacity=".72" stroke="#5f79b0" style="cursor:pointer"/><text x="171" y="168" text-anchor="middle" font-size="13" fill="#1c1e23" pointer-events="none">lid closed · click to open</text>`;
+ if(on(0)&&!W.lidL)g+=`<rect x="36" y="46" width="270" height="234" rx="8" fill="none" stroke="#2457d6" stroke-width="2.5" class="wring"/>`;
+ $('#wSvg').innerHTML=g;
+ const st=s<WS.length?WS[s]:null;$('#wN').textContent=st?`Step ${s+1} of ${WS.length}${st.time?' · '+st.time+' in a real test':''}`:'Test complete';
+ $('#wT').textContent=st?st.t:'All three biomarkers read';$('#wD').textContent=st?st.act:'SnapREACT scanned the sensor. Darker wells mean more biomarker; the app corrects each reading with the reference patches before reporting it.';
+ $('#wWhy').textContent=st?st.why:'';
+ $('#wSteps').innerHTML=WS.map((x,i)=>`<li class="${i<s?'done':i==s?'now':''}"><i>${i<s?'✓':i+1}</i><span>${x.t}${x.time?` <small>${x.time}</small>`:''}</span></li>`).join('');
+ const tools=$('#wTools');tools.innerHTML=`<button class="pill" id="wTubeB" ${s===4?'':'disabled'}>Add colour reagents</button><button class="pill" id="wCam" ${s===5?'':'disabled'}>Take photo with SnapREACT</button>`;
+ $('#wTubeB').onclick=()=>{if(cur()===4)animTo('color')};$('#wCam').onclick=()=>{if(cur()===5){W.photo=true;flash();wDraw()}};
+ $('#wHint').textContent=s===2&&W.dx>0?'Tip: grab anywhere on the right half':'';
+ bind();
+ if(W.photo)$('#wRes').innerHTML=['CXCL9','NGAL','Creatinine'].map((n,i)=>`<span><i style="background:${mix([150,190,240],TEAL,WELLV[i])}"></i>${n}: intensity ${Math.round(WELLV[i]*100)}</span>`).join('')+`<a href="#appTabs" onclick="document.querySelector('#appTabs').scrollIntoView({behavior:'smooth',block:'center'});return false">See how the app reads them →</a>`;else $('#wRes').innerHTML=''}
+function animTo(k){const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1400);W[k]=p;wDraw();if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+function flash(){const f=$('#wFlash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}
+let drag=null;
+function bind(){const sv=$('#wSvg');
+ $$('#wSvg .wLidL').forEach(e=>e.onclick=ev=>{ev.stopPropagation();W.lidL=!W.lidL;wDraw()});
+ $$('#wSvg .wLidR').forEach(e=>e.onclick=ev=>{ev.stopPropagation();W.lidR=!W.lidR;wDraw()});
+ const ld=$('#wLoad');if(ld)ld.onclick=()=>{if(cur()===1)animTo('sample')};
+ $$('#wSvg .wWell').forEach(e=>e.onclick=()=>{if(cur()===3)animTo('rca')});
+ const r=$('#wRight');r.onpointerdown=ev=>{if(W.dx===0||(ev.target.classList.contains('wLidR')&&!W.lidR))return;const pt=sv.getBoundingClientRect();drag={x:ev.clientX,dx:W.dx,k:700/pt.width};r.setPointerCapture(ev.pointerId)};
+ r.onpointermove=ev=>{if(!drag)return;let nd=drag.dx+(ev.clientX-drag.x)*drag.k;if(cur()<2)nd=Math.max(nd,W.dx);W.dx=Math.max(0,Math.min(70,nd));
+  if(W.dx<4){W.dx=0;drag=null;if(W.sample>=1&&W.bridge<1)animTo('bridge');else wDraw();return}wDrawLite()};
+ r.onpointerup=r.onpointercancel=()=>{if(!drag)return;drag=null;if(W.dx>0&&W.dx<14&&cur()>=2){W.dx=0;if(W.bridge<1){animTo('bridge');return}}wDraw()}}
+function wDrawLite(){const r=$('#wRight');if(r)r.setAttribute('transform',`translate(${W.dx} 0)`)}
+$('#wReset').onclick=()=>{Object.assign(W,{dx:70,lidL:false,lidR:false,sample:0,bridge:0,rca:0,color:0,photo:false});wDraw()};
+wDraw();
+
+/* device design tabs */
+$$('#dTabs button').forEach(b=>b.onclick=()=>{$$('#dTabs button').forEach(x=>x.classList.toggle('on',x===b));$$('#m-react .dpane').forEach(p=>p.classList.toggle('on',p.dataset.t==b.dataset.t))});
+const thumbSet=(box,img,cap,list)=>{$(box).innerHTML=list.map((x,i)=>`<button data-i="${i}">${x[1]}</button>`).join('');const set=i=>{$(img).src=`img/${list[i][0]}.jpg`;$(img).alt=list[i][1];$(cap).innerHTML=list[i][2];$$(box+' button').forEach((b,j)=>b.classList.toggle('on',j==i))};$$(box+' button').forEach(b=>b.onclick=()=>set(+b.dataset.i));set(0)};
+thumbSet('#slThumbs','#slImg','#slCap',[['react-dwg-bottom','Bottom component','<b>Schematic 4.</b> Engineering drawing of the bottom component. Click to enlarge.'],['react-dwg-slider','Upper slider','<b>Schematic 5.</b> Engineering drawing of the upper slider component. Click to enlarge.'],['react-pla','PLA structure','<b>Schematic 6.</b> Structure of polylactic acid (PLA).']]);
+thumbSet('#lidThumbs','#lidImg','#lidCap',[['react-lid3d','Lid closed','<b>Schematic 8.</b> Lid cover, closed.'],['react-dwg-lid','Lid drawing','<b>Schematic 7.</b> Engineering drawing of the lid cover. Click to enlarge.'],['react-pc','PC structure','<b>Schematic 9.</b> Structure of polycarbonate.']]);
+
+/* H7/g6 fit (ISO 286 values, micrometres) */
+const FIT=[[3,6,8,12,-4],[6,10,9,15,-5],[10,18,11,18,-6],[18,30,13,21,-7],[30,50,16,25,-9]];
+const fit=()=>{const n=+$('#fitN').value,f=FIT.find(r=>n>r[0]&&n<=r[1])||FIT[0],[,, it6,it7,es]=f,ei=es-it6,sc=v=>50+v/30*45;
+ $('#fitV').textContent=n+' mm';$('#fitH').style.cssText=`left:${sc(0)}%;width:${sc(it7)-sc(0)}%`;$('#fitS').style.cssText=`left:${sc(ei)}%;width:${sc(es)-sc(ei)}%`;
+ $('#fitTxt').innerHTML=`Hole 0 to +${it7} µm, shaft ${es} to ${ei} µm: always <b>${-es} to ${it7-ei} µm of clearance</b>, enough to slide without rattling.`};
+$('#fitN').oninput=fit;fit();
+
+/* lid hinge */
+const hinge=()=>{const a=+$('#lidA').value,r=a*Math.PI/180,hx=70,hy=122,L=105,ex=hx+Math.cos(r)*L,ey=hy-Math.sin(r)*L;$('#lidV').textContent=a+'°';
+ const arc=`M${hx+40} ${hy} A40 40 0 ${a>180?1:0} 0 ${hx+Math.cos(r)*40} ${hy-Math.sin(r)*40}`;
+ $('#hinge').innerHTML=`<rect x="50" y="${hy}" width="230" height="20" rx="3" fill="#d3d8e0"/><rect x="${hx+20}" y="${hy-6}" width="170" height="6" fill="#f3f0e6" stroke="#c9ced8"/>
+ <path d="${arc}" fill="none" stroke="#2457d6" stroke-dasharray="3 3"/><line x1="${hx}" y1="${hy}" x2="${ex}" y2="${ey}" stroke="#9fc0ff" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+ <circle cx="${hx}" cy="${hy}" r="7" fill="#fff" stroke="#1c1e23" stroke-width="2.5"/><path d="M${hx} ${hy} L${hx+Math.cos(160*Math.PI/180)*30} ${hy-Math.sin(160*Math.PI/180)*30}" stroke="#e5484d" stroke-width="2"/>
+ <text x="6" y="${hy-18}" font-size="11" fill="#e5484d">160° stop</text><text x="150" y="${hy-12}" font-size="11" fill="#646a76">paper sensor</text>`};
+$('#lidA').oninput=hinge;hinge();
+
+/* Owens-Wendt + Lucas-Washburn */
+const inp=(box,list)=>{$(box).innerHTML=list.map(([id,l,v,u])=>`<label><span>${l}</span><input type="number" id="${id}" value="${v}" step="any"><small>${u}</small></label>`).join('')};
+inp('#owIn',[['ow1','γ<sub>S</sub><sup>d</sup> nitrocellulose',27.2,'mJ/m²'],['ow2','γ<sub>S</sub><sup>p</sup> nitrocellulose',27.7,'mJ/m²'],['ow3','γ<sub>L</sub> urine',72.0,'mJ/m²'],['ow4','γ<sub>L</sub><sup>d</sup> urine',21.8,'mJ/m²'],['ow5','γ<sub>L</sub><sup>p</sup> urine',50.2,'mJ/m²']]);
+inp('#lwIn',[['lw1','γ<sub>SL</sub>',4.45,'mN/m'],['lw2','pore radius r',0.4,'mm'],['lw3','contact angle θ',44,'°'],['lw4','viscosity μ',0.001,'Pa·s'],['lw5','channels',3,'']]);
+const g=id=>+$('#'+id).value;
+const ow=()=>{const s=Math.sqrt(g('ow1')*g('ow4'))+Math.sqrt(g('ow2')*g('ow5')),c=2/g('ow3')*s-1,th=Math.acos(Math.max(-1,Math.min(1,c)))*180/Math.PI;
+ $('#owT').textContent=isFinite(th)?th.toFixed(1)+'°':'n/a';$('#owS').innerHTML=`cos θ = (2/${g('ow3')})(${Math.sqrt(g('ow1')*g('ow4')).toFixed(2)} + ${Math.sqrt(g('ow2')*g('ow5')).toFixed(2)}) − 1 = ${c.toFixed(4)}`};
+const lw=()=>{const k=Math.sqrt(g('lw1')/1000*g('lw2')/1000*Math.cos(g('lw3')*Math.PI/180)/(2*g('lw4'))),kc=k/Math.max(1,g('lw5')),t=+$('#lwT').value,L=kc*Math.sqrt(t),v=kc/(2*Math.sqrt(t));
+ $('#lwTV').textContent=t+' s'+(t>=60?` (${(t/60).toFixed(1)} min)`:'');$('#lwL').textContent=(L*1000).toFixed(0)+' mm';$('#lwV').textContent=` · front moving at ${(v*1000).toFixed(2)} mm/s`;
+ $('#lwS').innerHTML=`k = √(γr cos θ / 2μ) = ${k.toFixed(4)} m/√s; per channel ${kc.toFixed(5)} m/√s. Team's figure: 146 mm after 5 min.`;
+ const X=s=>20+s/600*290,Y=mm=>130-mm/220*115;let pts='';for(let s=0;s<=600;s+=10)pts+=`${X(s)},${Y(kc*Math.sqrt(s)*1000)} `;
+ $('#lwChart').innerHTML=`<line x1="20" y1="130" x2="312" y2="130" stroke="#c9ced8"/><line x1="20" y1="10" x2="20" y2="130" stroke="#c9ced8"/>
+ <text x="24" y="20" font-size="10" fill="#9097a3">L (mm)</text><text x="312" y="146" text-anchor="end" font-size="10" fill="#9097a3">600 s</text><text x="20" y="146" font-size="10" fill="#9097a3">0</text>
+ <line x1="${X(300)}" y1="12" x2="${X(300)}" y2="130" stroke="#e3e6eb" stroke-dasharray="3 3"/><text x="${X(300)+3}" y="24" font-size="10" fill="#9097a3">5 min</text>
+ <polyline points="${pts}" fill="none" stroke="#2457d6" stroke-width="2.2"/><circle cx="${X(t)}" cy="${Y(L*1000)}" r="5" fill="#2457d6" stroke="#fff" stroke-width="2"/>`};
+$$('#owIn input').forEach(i=>i.oninput=ow);$$('#lwIn input').forEach(i=>i.oninput=lw);$('#lwT').oninput=lw;ow();lw();
+
+/* app screens */
+const APP=[['Home','react-app2','A dashboard that sends users to take a new test or view past results.'],['Test','react-app3','Photo guidelines, then a photo of the sensor in the app (or one from the camera library). A frame overlay shows where to place the sensor.'],['Processing','react-app4','The app processes the image in about 10–15 seconds, with status messages as it validates, finds the sensor and reads each biomarker.'],['History','react-app5','Past results with approximate biomarker levels and an interpretation: healthy/normal in green, keep monitoring in yellow, or see a doctor in red.'],['Help','react-app6','Tips for taking a test, how to read results, and what to do next based on them.']];
+$('#appTabs').innerHTML=APP.map((a,i)=>`<button data-i="${i}">${a[0]}</button>`).join('');
+const showApp=i=>{$('#appImg').src=`img/${APP[i][1]}.jpg`;$('#appImg').alt=`SnapREACT ${APP[i][0]} screen`;$('#appT').textContent=`${APP[i][0]} screen`;$('#appD').textContent=APP[i][2];$$('#appTabs button').forEach((b,j)=>b.classList.toggle('on',j==i))};
+$$('#appTabs button').forEach(b=>b.onclick=()=>showApp(+b.dataset.i));showApp(0);
+const PIPE=[['Image validation','Users frame the sensor with on-screen guidance; the app checks focus, resolution and exposure.'],['Sensor scanning and edge detection','Finds the sensor perimeter and its wells with the Canny algorithm plus colour-based segmentation.'],['Colour extraction','Averages the RGB values of a subset of pixels at the centre of each circular well.'],['Calibration','Corrects for lighting with the four reference patches, and subtracts the urine\'s own colour, using the loading zone as a baseline, to isolate the DNAzyme\'s blue.']];
+$('#pipe').innerHTML=PIPE.map((p,i)=>`<li data-i="${i}" tabindex="0"><b>${p[0]}</b><span>${p[1]}</span></li>`).join('')+'<li class="go"><button class="pill" id="pipeGo">▶ Analyze a photo</button></li>';
+const pipeSel=i=>$$('#pipe li[data-i]').forEach((l,j)=>{l.classList.toggle('on',j==i);l.classList.toggle('done',j<i)});
+$$('#pipe li[data-i]').forEach(l=>l.onclick=()=>pipeSel(+l.dataset.i));pipeSel(0);
+$('#pipeGo').onclick=()=>{showApp(2);let i=0;pipeSel(0);const iv=setInterval(()=>{i++;if(i>=PIPE.length){clearInterval(iv);pipeSel(4);showApp(3);return}pipeSel(i)},900)};
+
+/* calibration demo */
+const PATCH=[230,170,110,50],WELL=[['CXCL9',150],['NGAL',95],['Creatinine',60]];
+const cam=(I,b,c)=>Math.max(0,Math.min(255,255*Math.pow(I/255,1/(.55+.6*b))*b*.92+c*.25));
+const col=(v,b,c)=>{const f=v/255,r=255*(1-f)+20*f,gg=255*(1-f)+140*f,bb=255*(1-f)+175*f;return `rgb(${Math.round(Math.min(255,r*b*.95+c))},${Math.round(Math.min(255,gg*b*.95+c*.3))},${Math.round(Math.min(255,bb*b*.95-c))})`};
+const calib=()=>{const b=g('calB'),c=g('calC');WELL[0][1]=g('calW0');$('#calBV').textContent=Math.round(b*100)+'%';$('#calCV').textContent=c>0?'warm':c<0?'cool':'neutral';$('#calW0V').textContent=WELL[0][1];
+ const pm=PATCH.map(I=>cam(I,b,c)),pairs=pm.map((m,i)=>[m,PATCH[i]]).sort((x,y)=>x[0]-y[0]);
+ const interp=m=>{let i=0;while(i<pairs.length-2&&m>pairs[i+1][0])i++;const [a,ta]=pairs[i],[bb,tb]=pairs[i+1];return ta+(m-a)/(bb-a)*(tb-ta)};
+ const rows=WELL.map(([n,I])=>{const m=cam(I,b,c);return [n,I,m,interp(m)]});
+ let s=`<rect x="4" y="4" width="352" height="192" rx="10" fill="${col(0,b,c)}" stroke="#c9ced8"/><text x="20" y="26" font-size="11" fill="#646a76">Simulated photo of the sensor</text>`;
+ rows.forEach((r,i)=>{const y=60+i*48;s+=`<line x1="70" y1="100" x2="150" y2="${y}" stroke="${col(40,b,c)}" stroke-width="6"/><circle cx="170" cy="${y}" r="18" fill="${col(r[1],b,c)}" stroke="#9aa3b2"/><text x="196" y="${y+4}" font-size="12" fill="#1c1e23">${r[0]}</text>`});
+ s+=`<circle cx="60" cy="100" r="16" fill="${col(25,b,c)}" stroke="#9aa3b2"/><text x="34" y="134" font-size="10" fill="#646a76">sample</text>`;
+ PATCH.forEach((I,i)=>{s+=`<rect x="300" y="${36+i*38}" width="28" height="28" rx="3" fill="${col(I,b,c)}" stroke="#9aa3b2"/>`});s+=`<text x="290" y="188" font-size="10" fill="#646a76">reference patches</text>`;
+ $('#calSvg').innerHTML=s;
+ $('#calT').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n" style="color:${Math.abs(r[2]-r[1])>8?'#d23b3b':'inherit'}">${r[2].toFixed(0)}</td><td class="n"><b>${r[3].toFixed(0)}</b></td></tr>`).join('')};
+['calB','calC','calW0'].forEach(id=>$('#'+id).oninput=calib);calib();
+}
+
+/* ---------- flow hover probe ---------- */
+const fprobe=$('#fprobe');
+fcv.addEventListener('pointermove',e=>{const rc=fcv.getBoundingClientRect(),px=e.clientX-rc.left,py=e.clientY-rc.top,[x,z]=toMM(px,py),v=z>=0&&z<=38?samp(FIELDS[cur],x,z):null;
+ if(!v){fprobe.style.display='none';return}const sp=Math.hypot(v.u,v.w);fprobe.style.display='block';fprobe.style.left=px+'px';fprobe.style.top=py+'px';
+ fprobe.textContent=`${Math.round(sp)} mm/s · ${sp<20?'poorly mixed':'well mixed'} · ${Math.abs(x).toFixed(0)} mm from axis, ${z.toFixed(0)} mm up`});
+fcv.addEventListener('pointerleave',()=>fprobe.style.display='none');
+}
+</script>
+</body>
+</html>
